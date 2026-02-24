@@ -1,1 +1,1 @@
-# healthcare-benefits-navigator
+# Healthcare Benefits Navigator
