@@ -1,0 +1,8 @@
+timestamp,query,answer,rating,chunk_ids,comment
+2026-03-10T19:03:49.297838,what are the benfits for pregnancy women in boston?,"In Massachusetts for the 2025 plan year, all health insurance plans must cover maternity and prenatal care as part of the Affordable Care Act's Essential Health Benefits (EHB). Here are the benefits for pregnancy women in Boston based on the provided plans:
+
+1. **Blue Care Elect PPO Saver (Blue Cros",5,"[""plan_10000MA00010001-00"", ""plan_10000MA00050001-00"", ""plan_10100MA00080001-00"", ""plan_10100MA00100001-00"", ""plan_10100MA00110001-00""]",
+2026-03-10T19:22:11.699335,what is my premium cost and also what benefits do i have for fitness and weight loss,"Based on the provided context, I can give you information about the premiums and benefits for the plans listed. However, the context does not include specific details about fitness and weight loss benefits for the plans. Here's what I can tell you:
+
+### Premium Costs
+The premium costs vary by age an",4,"[""plan_10000MA00040001-00"", ""plan_10000MA00010001-00"", ""plan_10000MA00020001-00"", ""plan_10000MA00050001-00"", ""plan_10000MA00030001-00""]",

@@ -1,0 +1,31 @@
+StateCode,IssuerId,IssuerMarketPlaceMarketingName,PlanMarketingName,PlanType,MetalLevel,IsHSAEligible,IsReferralRequiredForSpecialist,NationalNetwork,WellnessProgramOffered,DentalOnlyPlan,NetworkId,FormularyId,PlanId,BusinessYear
+MA,10000,Blue Cross Blue Shield MA,Blue Care Elect PPO Saver,PPO,Bronze,Yes,No,No,Yes,No,MAN10000,MAF10000,10000MA00010001-00,2025
+MA,10000,Blue Cross Blue Shield MA,Blue Care Elect PPO 1000,PPO,Silver,No,No,No,Yes,No,MAN10000,MAF10000,10000MA00020001-00,2025
+MA,10000,Blue Cross Blue Shield MA,Blue Care Elect PPO 500,PPO,Gold,No,No,No,Yes,No,MAN10000,MAF10000,10000MA00030001-00,2025
+MA,10000,Blue Cross Blue Shield MA,Blue Care Elect PPO 0,PPO,Platinum,No,No,No,Yes,No,MAN10000,MAF10000,10000MA00040001-00,2025
+MA,10000,Blue Cross Blue Shield MA,HMO Blue New England Value,HMO,Bronze,Yes,Yes,No,Yes,No,MAN10000,MAF10000,10000MA00050001-00,2025
+MA,10000,Blue Cross Blue Shield MA,HMO Blue New England,HMO,Silver,No,Yes,No,Yes,No,MAN10000,MAF10000,10000MA00060001-00,2025
+MA,10000,Blue Cross Blue Shield MA,HMO Blue New England Plus,HMO,Gold,No,Yes,No,Yes,No,MAN10000,MAF10000,10000MA00070001-00,2025
+MA,10100,Harvard Pilgrim,Harvard Pilgrim HMO Saver,HMO,Bronze,Yes,Yes,No,Yes,No,MAN10100,MAF10100,10100MA00080001-00,2025
+MA,10100,Harvard Pilgrim,Harvard Pilgrim HMO,HMO,Silver,No,Yes,No,Yes,No,MAN10100,MAF10100,10100MA00090001-00,2025
+MA,10100,Harvard Pilgrim,Harvard Pilgrim HMO Gold,HMO,Gold,No,Yes,No,Yes,No,MAN10100,MAF10100,10100MA00100001-00,2025
+MA,10100,Harvard Pilgrim,Harvard Pilgrim PPO,PPO,Silver,No,No,No,Yes,No,MAN10100,MAF10100,10100MA00110001-00,2025
+MA,10200,Tufts Health,Tufts Health Direct HMO Saver,HMO,Bronze,Yes,Yes,No,Yes,No,MAN10200,MAF10200,10200MA00120001-00,2025
+MA,10200,Tufts Health,Tufts Health Direct HMO,HMO,Silver,No,Yes,No,Yes,No,MAN10200,MAF10200,10200MA00130001-00,2025
+MA,10200,Tufts Health,Tufts Health Direct Gold,HMO,Gold,No,Yes,No,Yes,No,MAN10200,MAF10200,10200MA00140001-00,2025
+MA,10200,Tufts Health,Tufts Health Premier PPO,PPO,Gold,No,No,No,Yes,No,MAN10200,MAF10200,10200MA00150001-00,2025
+MA,10300,Fallon,Fallon Health Direct Care HMO,HMO,Silver,No,Yes,No,Yes,No,MAN10300,MAF10300,10300MA00160001-00,2025
+MA,10300,Fallon,Fallon Health Direct Gold,HMO,Gold,No,Yes,No,Yes,No,MAN10300,MAF10300,10300MA00170001-00,2025
+MA,10300,Fallon,Fallon Health SelectCare Bronze,HMO,Bronze,Yes,Yes,No,Yes,No,MAN10300,MAF10300,10300MA00180001-00,2025
+MA,10400,Health New England,HNE HMO Silver,HMO,Silver,No,Yes,No,Yes,No,MAN10400,MAF10400,10400MA00190001-00,2025
+MA,10400,Health New England,HNE HMO Gold,HMO,Gold,No,Yes,No,Yes,No,MAN10400,MAF10400,10400MA00200001-00,2025
+MA,10400,Health New England,HNE HMO Bronze,HMO,Bronze,Yes,Yes,No,Yes,No,MAN10400,MAF10400,10400MA00210001-00,2025
+MA,10500,WellSense,WellSense Health Plan Silver,HMO,Silver,No,Yes,No,Yes,No,MAN10500,MAF10500,10500MA00220001-00,2025
+MA,10500,WellSense,WellSense Health Plan Bronze,HMO,Bronze,Yes,Yes,No,Yes,No,MAN10500,MAF10500,10500MA00230001-00,2025
+MA,10600,Mass General Brigham,MGB Health Plan Silver HMO,HMO,Silver,No,Yes,No,Yes,No,MAN10600,MAF10600,10600MA00240001-00,2025
+MA,10600,Mass General Brigham,MGB Health Plan Gold HMO,HMO,Gold,No,Yes,No,Yes,No,MAN10600,MAF10600,10600MA00250001-00,2025
+MA,10600,Mass General Brigham,MGB Health Plan Bronze HMO,HMO,Bronze,Yes,Yes,No,Yes,No,MAN10600,MAF10600,10600MA00260001-00,2025
+MA,10700,UnitedHealthcare,UHC Navigate HMO Silver,HMO,Silver,No,Yes,No,Yes,No,MAN10700,MAF10700,10700MA00270001-00,2025
+MA,10700,UnitedHealthcare,UHC Navigate HMO Gold,HMO,Gold,No,Yes,No,Yes,No,MAN10700,MAF10700,10700MA00280001-00,2025
+MA,10700,UnitedHealthcare,UHC Choice Plus PPO Silver,PPO,Silver,No,No,No,Yes,No,MAN10700,MAF10700,10700MA00290001-00,2025
+MA,10700,UnitedHealthcare,UHC Bronze HSA PPO,PPO,Bronze,Yes,No,No,Yes,No,MAN10700,MAF10700,10700MA00300001-00,2025

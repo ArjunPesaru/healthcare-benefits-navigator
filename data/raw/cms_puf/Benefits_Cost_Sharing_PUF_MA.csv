@@ -1,0 +1,631 @@
+StateCode,IssuerId,PlanId,BenefitName,CopayInnTier1,CoinsInnTier1,IsCovered,BusinessYear
+MA,10000,10000MA00010001-00,Primary Care Visit to Treat an Injury or Illness,$30,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Specialist Visit,$60,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Emergency Room Services,$500,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Urgent Care Centers or Facilities,$75,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Mental/Behavioral Health Outpatient Services,$30,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Substance Abuse Disorder Outpatient Services,$30,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Specialty Drugs,$200,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Inpatient Hospital Services (e.g. Hospital Stay),20% coins,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Outpatient Surgery Physician/Surgical Services,$60,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Rehabilitative Physical Therapy,$60,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$60,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Skilled Nursing Facility,20% coins,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Routine Eye Exam (Adult),$60,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,"Imaging (CT/PET Scans, MRIs)",$70,No Charge,Covered,2025
+MA,10000,10000MA00010001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Primary Care Visit to Treat an Injury or Illness,$25,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Specialist Visit,$50,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Emergency Room Services,$300,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Urgent Care Centers or Facilities,$50,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Mental/Behavioral Health Outpatient Services,$25,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Substance Abuse Disorder Outpatient Services,$25,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Preferred Brand Drugs,$50,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Non-Preferred Brand Drugs,$100,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Inpatient Hospital Services (e.g. Hospital Stay),250/adm,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Outpatient Surgery Physician/Surgical Services,$50,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Rehabilitative Physical Therapy,$50,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$50,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Skilled Nursing Facility,250/adm,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Routine Eye Exam (Adult),$50,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,"Imaging (CT/PET Scans, MRIs)",$60,No Charge,Covered,2025
+MA,10000,10000MA00020001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Primary Care Visit to Treat an Injury or Illness,$20,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Specialist Visit,$40,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Emergency Room Services,$250,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Urgent Care Centers or Facilities,$40,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Mental/Behavioral Health Outpatient Services,$20,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Substance Abuse Disorder Outpatient Services,$20,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Generic Drugs,$10,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Preferred Brand Drugs,$45,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Non-Preferred Brand Drugs,$90,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Specialty Drugs,$150,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Inpatient Hospital Services (e.g. Hospital Stay),200/adm,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Outpatient Surgery Physician/Surgical Services,$40,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Rehabilitative Physical Therapy,$40,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$40,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Skilled Nursing Facility,200/adm,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Routine Eye Exam (Adult),$40,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,"Imaging (CT/PET Scans, MRIs)",$50,No Charge,Covered,2025
+MA,10000,10000MA00030001-00,Laboratory Outpatient and Professional Services,$15,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Primary Care Visit to Treat an Injury or Illness,$15,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Specialist Visit,$30,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Emergency Room Services,$150,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Urgent Care Centers or Facilities,$30,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Mental/Behavioral Health Outpatient Services,$15,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Substance Abuse Disorder Outpatient Services,$15,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Generic Drugs,$5,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Preferred Brand Drugs,$35,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Non-Preferred Brand Drugs,$70,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Specialty Drugs,$100,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Inpatient Hospital Services (e.g. Hospital Stay),100/adm,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Outpatient Surgery Physician/Surgical Services,$30,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Rehabilitative Physical Therapy,$30,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$30,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Skilled Nursing Facility,100/adm,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Routine Eye Exam (Adult),$30,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,"Imaging (CT/PET Scans, MRIs)",$35,No Charge,Covered,2025
+MA,10000,10000MA00040001-00,Laboratory Outpatient and Professional Services,$10,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Specialist Visit,$50,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Emergency Room Services,$500,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Urgent Care Centers or Facilities,$75,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Specialty Drugs,$200,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Inpatient Hospital Services (e.g. Hospital Stay),20% coins,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Outpatient Surgery Physician/Surgical Services,$50,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Rehabilitative Physical Therapy,$50,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$50,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Skilled Nursing Facility,20% coins,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Routine Eye Exam (Adult),$50,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,"Imaging (CT/PET Scans, MRIs)",$70,No Charge,Covered,2025
+MA,10000,10000MA00050001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Specialist Visit,$40,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Emergency Room Services,$300,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Urgent Care Centers or Facilities,$50,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Preferred Brand Drugs,$50,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Non-Preferred Brand Drugs,$100,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Inpatient Hospital Services (e.g. Hospital Stay),250/adm,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Outpatient Surgery Physician/Surgical Services,$40,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Rehabilitative Physical Therapy,$40,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$40,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Skilled Nursing Facility,250/adm,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Routine Eye Exam (Adult),$40,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,"Imaging (CT/PET Scans, MRIs)",$60,No Charge,Covered,2025
+MA,10000,10000MA00060001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Specialist Visit,$35,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Emergency Room Services,$250,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Urgent Care Centers or Facilities,$40,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Generic Drugs,$10,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Preferred Brand Drugs,$45,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Non-Preferred Brand Drugs,$90,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Specialty Drugs,$150,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Inpatient Hospital Services (e.g. Hospital Stay),200/adm,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Outpatient Surgery Physician/Surgical Services,$35,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Rehabilitative Physical Therapy,$35,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$35,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Skilled Nursing Facility,200/adm,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Routine Eye Exam (Adult),$35,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,"Imaging (CT/PET Scans, MRIs)",$50,No Charge,Covered,2025
+MA,10000,10000MA00070001-00,Laboratory Outpatient and Professional Services,$15,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Specialist Visit,$60,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Emergency Room Services,$500,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Urgent Care Centers or Facilities,$75,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Generic Drugs,$20,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Preferred Brand Drugs,$60,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Non-Preferred Brand Drugs,$120,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Specialty Drugs,$200,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Inpatient Hospital Services (e.g. Hospital Stay),20% coins,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Outpatient Surgery Physician/Surgical Services,$60,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Rehabilitative Physical Therapy,$60,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$60,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Skilled Nursing Facility,20% coins,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Routine Eye Exam (Adult),$60,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,"Imaging (CT/PET Scans, MRIs)",$75,No Charge,Covered,2025
+MA,10100,10100MA00080001-00,Laboratory Outpatient and Professional Services,$25,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Specialist Visit,$45,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Emergency Room Services,$300,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Urgent Care Centers or Facilities,$50,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Inpatient Hospital Services (e.g. Hospital Stay),300/adm,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Outpatient Surgery Physician/Surgical Services,$45,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Rehabilitative Physical Therapy,$45,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$45,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Skilled Nursing Facility,300/adm,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Routine Eye Exam (Adult),$45,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,"Imaging (CT/PET Scans, MRIs)",$65,No Charge,Covered,2025
+MA,10100,10100MA00090001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Specialist Visit,$35,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Emergency Room Services,$250,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Urgent Care Centers or Facilities,$40,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Generic Drugs,$10,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Preferred Brand Drugs,$45,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Non-Preferred Brand Drugs,$90,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Specialty Drugs,$150,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Inpatient Hospital Services (e.g. Hospital Stay),200/adm,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Outpatient Surgery Physician/Surgical Services,$35,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Rehabilitative Physical Therapy,$35,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$35,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Skilled Nursing Facility,200/adm,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Routine Eye Exam (Adult),$35,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,"Imaging (CT/PET Scans, MRIs)",$50,No Charge,Covered,2025
+MA,10100,10100MA00100001-00,Laboratory Outpatient and Professional Services,$15,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Primary Care Visit to Treat an Injury or Illness,$30,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Specialist Visit,$50,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Emergency Room Services,$300,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Urgent Care Centers or Facilities,$50,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Mental/Behavioral Health Outpatient Services,$30,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Substance Abuse Disorder Outpatient Services,$30,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Inpatient Hospital Services (e.g. Hospital Stay),300/adm,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Outpatient Surgery Physician/Surgical Services,$50,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Rehabilitative Physical Therapy,$50,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$50,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Skilled Nursing Facility,300/adm,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Routine Eye Exam (Adult),$50,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,"Imaging (CT/PET Scans, MRIs)",$65,No Charge,Covered,2025
+MA,10100,10100MA00110001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Specialist Visit,$65,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Emergency Room Services,$500,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Urgent Care Centers or Facilities,$75,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Generic Drugs,$20,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Preferred Brand Drugs,$60,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Non-Preferred Brand Drugs,$120,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Specialty Drugs,$200,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Inpatient Hospital Services (e.g. Hospital Stay),20% coins,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Outpatient Surgery Physician/Surgical Services,$65,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Rehabilitative Physical Therapy,$65,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$65,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Skilled Nursing Facility,20% coins,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Routine Eye Exam (Adult),$65,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,"Imaging (CT/PET Scans, MRIs)",$75,No Charge,Covered,2025
+MA,10200,10200MA00120001-00,Laboratory Outpatient and Professional Services,$25,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Specialist Visit,$50,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Emergency Room Services,$300,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Urgent Care Centers or Facilities,$50,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Inpatient Hospital Services (e.g. Hospital Stay),300/adm,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Outpatient Surgery Physician/Surgical Services,$50,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Rehabilitative Physical Therapy,$50,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$50,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Skilled Nursing Facility,300/adm,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Routine Eye Exam (Adult),$50,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,"Imaging (CT/PET Scans, MRIs)",$65,No Charge,Covered,2025
+MA,10200,10200MA00130001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Specialist Visit,$40,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Emergency Room Services,$250,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Urgent Care Centers or Facilities,$40,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Generic Drugs,$10,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Preferred Brand Drugs,$45,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Non-Preferred Brand Drugs,$90,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Specialty Drugs,$150,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Inpatient Hospital Services (e.g. Hospital Stay),200/adm,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Outpatient Surgery Physician/Surgical Services,$40,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Rehabilitative Physical Therapy,$40,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$40,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Skilled Nursing Facility,200/adm,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Routine Eye Exam (Adult),$40,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,"Imaging (CT/PET Scans, MRIs)",$50,No Charge,Covered,2025
+MA,10200,10200MA00140001-00,Laboratory Outpatient and Professional Services,$15,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Primary Care Visit to Treat an Injury or Illness,$25,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Specialist Visit,$40,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Emergency Room Services,$250,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Urgent Care Centers or Facilities,$40,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Mental/Behavioral Health Outpatient Services,$25,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Substance Abuse Disorder Outpatient Services,$25,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Generic Drugs,$10,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Preferred Brand Drugs,$45,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Non-Preferred Brand Drugs,$90,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Specialty Drugs,$150,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Inpatient Hospital Services (e.g. Hospital Stay),200/adm,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Outpatient Surgery Physician/Surgical Services,$40,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Rehabilitative Physical Therapy,$40,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$40,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Skilled Nursing Facility,200/adm,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Routine Eye Exam (Adult),$40,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,"Imaging (CT/PET Scans, MRIs)",$50,No Charge,Covered,2025
+MA,10200,10200MA00150001-00,Laboratory Outpatient and Professional Services,$15,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Specialist Visit,$45,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Emergency Room Services,$300,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Urgent Care Centers or Facilities,$50,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Inpatient Hospital Services (e.g. Hospital Stay),300/adm,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Outpatient Surgery Physician/Surgical Services,$45,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Rehabilitative Physical Therapy,$45,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$45,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Skilled Nursing Facility,300/adm,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Routine Eye Exam (Adult),$45,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,"Imaging (CT/PET Scans, MRIs)",$65,No Charge,Covered,2025
+MA,10300,10300MA00160001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Specialist Visit,$35,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Emergency Room Services,$250,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Urgent Care Centers or Facilities,$40,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Generic Drugs,$10,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Preferred Brand Drugs,$45,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Non-Preferred Brand Drugs,$90,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Specialty Drugs,$150,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Inpatient Hospital Services (e.g. Hospital Stay),200/adm,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Outpatient Surgery Physician/Surgical Services,$35,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Rehabilitative Physical Therapy,$35,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$35,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Skilled Nursing Facility,200/adm,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Routine Eye Exam (Adult),$35,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,"Imaging (CT/PET Scans, MRIs)",$50,No Charge,Covered,2025
+MA,10300,10300MA00170001-00,Laboratory Outpatient and Professional Services,$15,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Specialist Visit,$65,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Emergency Room Services,$500,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Urgent Care Centers or Facilities,$75,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Generic Drugs,$20,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Preferred Brand Drugs,$60,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Non-Preferred Brand Drugs,$120,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Specialty Drugs,$200,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Inpatient Hospital Services (e.g. Hospital Stay),20% coins,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Outpatient Surgery Physician/Surgical Services,$65,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Rehabilitative Physical Therapy,$65,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$65,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Skilled Nursing Facility,20% coins,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Routine Eye Exam (Adult),$65,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,"Imaging (CT/PET Scans, MRIs)",$75,No Charge,Covered,2025
+MA,10300,10300MA00180001-00,Laboratory Outpatient and Professional Services,$25,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Specialist Visit,$50,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Emergency Room Services,$300,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Urgent Care Centers or Facilities,$50,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Inpatient Hospital Services (e.g. Hospital Stay),300/adm,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Outpatient Surgery Physician/Surgical Services,$50,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Rehabilitative Physical Therapy,$50,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$50,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Skilled Nursing Facility,300/adm,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Routine Eye Exam (Adult),$50,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,"Imaging (CT/PET Scans, MRIs)",$65,No Charge,Covered,2025
+MA,10400,10400MA00190001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Specialist Visit,$40,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Emergency Room Services,$250,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Urgent Care Centers or Facilities,$40,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Generic Drugs,$10,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Preferred Brand Drugs,$45,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Non-Preferred Brand Drugs,$90,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Specialty Drugs,$150,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Inpatient Hospital Services (e.g. Hospital Stay),200/adm,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Outpatient Surgery Physician/Surgical Services,$40,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Rehabilitative Physical Therapy,$40,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$40,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Skilled Nursing Facility,200/adm,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Routine Eye Exam (Adult),$40,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,"Imaging (CT/PET Scans, MRIs)",$50,No Charge,Covered,2025
+MA,10400,10400MA00200001-00,Laboratory Outpatient and Professional Services,$15,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Specialist Visit,$65,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Emergency Room Services,$500,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Urgent Care Centers or Facilities,$75,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Generic Drugs,$20,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Preferred Brand Drugs,$60,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Non-Preferred Brand Drugs,$120,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Specialty Drugs,$200,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Inpatient Hospital Services (e.g. Hospital Stay),20% coins,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Outpatient Surgery Physician/Surgical Services,$65,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Rehabilitative Physical Therapy,$65,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$65,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Skilled Nursing Facility,20% coins,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Routine Eye Exam (Adult),$65,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,"Imaging (CT/PET Scans, MRIs)",$75,No Charge,Covered,2025
+MA,10400,10400MA00210001-00,Laboratory Outpatient and Professional Services,$25,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Specialist Visit,$45,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Emergency Room Services,$300,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Urgent Care Centers or Facilities,$50,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Inpatient Hospital Services (e.g. Hospital Stay),300/adm,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Outpatient Surgery Physician/Surgical Services,$45,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Rehabilitative Physical Therapy,$45,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$45,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Skilled Nursing Facility,300/adm,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Routine Eye Exam (Adult),$45,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,"Imaging (CT/PET Scans, MRIs)",$65,No Charge,Covered,2025
+MA,10500,10500MA00220001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Specialist Visit,$65,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Emergency Room Services,$500,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Urgent Care Centers or Facilities,$75,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Generic Drugs,$20,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Preferred Brand Drugs,$60,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Non-Preferred Brand Drugs,$120,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Specialty Drugs,$200,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Inpatient Hospital Services (e.g. Hospital Stay),20% coins,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Outpatient Surgery Physician/Surgical Services,$65,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Rehabilitative Physical Therapy,$65,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$65,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Skilled Nursing Facility,20% coins,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Routine Eye Exam (Adult),$65,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,"Imaging (CT/PET Scans, MRIs)",$75,No Charge,Covered,2025
+MA,10500,10500MA00230001-00,Laboratory Outpatient and Professional Services,$25,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Specialist Visit,$50,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Emergency Room Services,$300,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Urgent Care Centers or Facilities,$50,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Inpatient Hospital Services (e.g. Hospital Stay),300/adm,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Outpatient Surgery Physician/Surgical Services,$50,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Rehabilitative Physical Therapy,$50,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$50,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Skilled Nursing Facility,300/adm,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Routine Eye Exam (Adult),$50,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,"Imaging (CT/PET Scans, MRIs)",$65,No Charge,Covered,2025
+MA,10600,10600MA00240001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Specialist Visit,$40,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Emergency Room Services,$250,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Urgent Care Centers or Facilities,$40,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Generic Drugs,$10,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Preferred Brand Drugs,$45,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Non-Preferred Brand Drugs,$90,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Specialty Drugs,$150,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Inpatient Hospital Services (e.g. Hospital Stay),200/adm,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Outpatient Surgery Physician/Surgical Services,$40,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Rehabilitative Physical Therapy,$40,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$40,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Skilled Nursing Facility,200/adm,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Routine Eye Exam (Adult),$40,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,"Imaging (CT/PET Scans, MRIs)",$50,No Charge,Covered,2025
+MA,10600,10600MA00250001-00,Laboratory Outpatient and Professional Services,$15,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Specialist Visit,$65,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Emergency Room Services,$500,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Urgent Care Centers or Facilities,$75,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Generic Drugs,$20,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Preferred Brand Drugs,$60,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Non-Preferred Brand Drugs,$120,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Specialty Drugs,$200,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Inpatient Hospital Services (e.g. Hospital Stay),20% coins,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Outpatient Surgery Physician/Surgical Services,$65,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Rehabilitative Physical Therapy,$65,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$65,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Skilled Nursing Facility,20% coins,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Routine Eye Exam (Adult),$65,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,"Imaging (CT/PET Scans, MRIs)",$75,No Charge,Covered,2025
+MA,10600,10600MA00260001-00,Laboratory Outpatient and Professional Services,$25,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Specialist Visit,$55,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Emergency Room Services,$350,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Urgent Care Centers or Facilities,$55,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Inpatient Hospital Services (e.g. Hospital Stay),300/adm,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Outpatient Surgery Physician/Surgical Services,$55,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Rehabilitative Physical Therapy,$55,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$55,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Skilled Nursing Facility,300/adm,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Routine Eye Exam (Adult),$55,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,"Imaging (CT/PET Scans, MRIs)",$65,No Charge,Covered,2025
+MA,10700,10700MA00270001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Specialist Visit,$40,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Emergency Room Services,$275,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Urgent Care Centers or Facilities,$40,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Generic Drugs,$10,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Preferred Brand Drugs,$45,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Non-Preferred Brand Drugs,$90,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Specialty Drugs,$150,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Inpatient Hospital Services (e.g. Hospital Stay),200/adm,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Outpatient Surgery Physician/Surgical Services,$40,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Rehabilitative Physical Therapy,$40,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$40,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Skilled Nursing Facility,200/adm,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Routine Eye Exam (Adult),$40,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,"Imaging (CT/PET Scans, MRIs)",$55,No Charge,Covered,2025
+MA,10700,10700MA00280001-00,Laboratory Outpatient and Professional Services,$15,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Primary Care Visit to Treat an Injury or Illness,$30,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Specialist Visit,$55,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Emergency Room Services,$350,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Urgent Care Centers or Facilities,$55,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Mental/Behavioral Health Outpatient Services,$30,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Substance Abuse Disorder Outpatient Services,$30,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Generic Drugs,$15,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Preferred Brand Drugs,$55,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Non-Preferred Brand Drugs,$110,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Specialty Drugs,$175,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Inpatient Hospital Services (e.g. Hospital Stay),300/adm,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Outpatient Surgery Physician/Surgical Services,$55,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Rehabilitative Physical Therapy,$55,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$55,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Skilled Nursing Facility,300/adm,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Routine Eye Exam (Adult),$55,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,"Imaging (CT/PET Scans, MRIs)",$65,No Charge,Covered,2025
+MA,10700,10700MA00290001-00,Laboratory Outpatient and Professional Services,$20,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Primary Care Visit to Treat an Injury or Illness,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Specialist Visit,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Emergency Room Services,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Urgent Care Centers or Facilities,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Mental/Behavioral Health Outpatient Services,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Substance Abuse Disorder Outpatient Services,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Prenatal and Postnatal Care,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Generic Drugs,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Preferred Brand Drugs,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Non-Preferred Brand Drugs,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Specialty Drugs,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Inpatient Hospital Services (e.g. Hospital Stay),20% coins,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Outpatient Surgery Physician/Surgical Services,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Rehabilitative Physical Therapy,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Rehabilitative Occupational and Rehabilitative Speech Therapy,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Skilled Nursing Facility,20% coins,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Preventive Care/Screening/Immunization,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Pediatric Dental Check-Up for a Child,$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Routine Eye Exam (Adult),$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,"Imaging (CT/PET Scans, MRIs)",$0,No Charge,Covered,2025
+MA,10700,10700MA00300001-00,Laboratory Outpatient and Professional Services,$0,No Charge,Covered,2025
