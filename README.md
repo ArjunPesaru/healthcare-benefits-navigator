@@ -61,8 +61,8 @@ The Health Insurance Benefits Navigator is a **Capstone Project** that uses **Re
 |------|---------|
 | 1️⃣ | User Query |
 | 2️⃣ | Query Encoding — enriched with age, tier, carrier filters |
-| 3️⃣ | Semantic Search in FAISS — retrieves **Top-K = 15** results |
-| 4️⃣ | Re-ranking with XGBoost — reduces to **Top-N = 5** results |
+| 3️⃣ | Semantic Search in FAISS — retrieves |
+| 4️⃣ | Re-ranking with XGBoost |
 | 5️⃣ | LLM Generation — Mistral AI `mistral-small-latest` |
 | 6️⃣ | Response to User |
 | 7️⃣ | Feedback Loop — logs ratings → retrains XGBoost every 50 entries |
@@ -76,7 +76,7 @@ The Health Insurance Benefits Navigator is a **Capstone Project** that uses **Re
 | # | Source | Content |
 |---|--------|---------|
 | 1 | **CMS State-Based Exchange PUF 2025** | Plan names, benefits, copays, premiums by age |
-| 2 | **MA Health Connector ConnectorCare PDF 2025** | Exact subsidy copay values (Table 4) |
+| 2 | **MA Health Connector ConnectorCare PDF 2025** | Exact subsidy copay values |
 | 3 | **MA DOI Official Plan Filing 2025** | Licensed carriers, plan forms, DOI numbers |
 | 4 | **CMS Age Rating Curve (MA-specific)** | Premium multipliers by age (2:1 cap) |
 
