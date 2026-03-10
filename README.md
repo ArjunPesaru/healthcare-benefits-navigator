@@ -200,7 +200,7 @@ Run the notebook cells in this exact order:
 | `Cell 1` | ⚙️ Setup | Mount Drive, Install Dependencies, and Import Libraries | 
 | `Cell 2` | ⚙️ Setup | Define Project Paths and Directory Structure | 
 | `Cell 3` | 📥 Data | Configuration: Data Sources, Carriers, Benefits, and Plan Parameters |
-| `Cell 4` | 📥 Data |  Build Realistic MA Synthetic Plan Data | 
+| `Cell 4` | 📥 Data | Understanding the MA Insurance Plan Data | 
 | `Cell 5` | 🔄 Processing | Data Loading and Processing |
 | `Cell 6` | 📊 EDA  | Exploratory Data Analysis | 
 | `Cell 7` | 🧠 RAG | Build RAG Text Chunks |
