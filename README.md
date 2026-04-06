@@ -6,10 +6,13 @@ A Retrieval-Augmented Generation (RAG) system for exploring Massachusetts health
 
 - Natural-language search over 28+ MA health plans (HMO, PPO, Bronze → Platinum)
 - FAISS vector index for semantic retrieval
-- XGBoost re-ranker for precision-tuned results
+- XGBoost re-ranker with 11 query-chunk relevance features
 - Mistral LLM for final answer generation
 - ConnectorCare subsidy eligibility check based on FPL
 - Age-adjusted premium estimates using CMS 2:1 cap curve
+- Auto-detects HSA intent in queries for better plan retrieval
+- Input length guard prevents oversized prompts to the LLM
+- Centralised `PLAN_COLUMNS` schema keeps data definition in one place
 
 ## Project Structure
 
@@ -19,7 +22,9 @@ A Retrieval-Augmented Generation (RAG) system for exploring Massachusetts health
 ├── data_builder.py     # Builds CSVs and text chunks from config
 ├── setup.py            # One-time setup: build index + train re-ranker
 ├── rag/
+│   ├── __init__.py     # Public API exports
 │   ├── embeddings.py   # Sentence-transformer embedding + FAISS index
+│   ├── pipeline.py     # End-to-end RAG: encode → retrieve → re-rank → LLM
 │   └── reranker.py     # XGBoost re-ranking model
 ├── data/
 │   ├── raw/            # Source plan data (generated)
