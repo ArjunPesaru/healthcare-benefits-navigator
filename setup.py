@@ -1,13 +1,16 @@
 """
 One-time setup script.
-Run this before launching the Streamlit app:
+Run this before launching the Streamlit app for the first time.
 
+Usage:
     python setup.py
 
 What it does:
-  1. Builds the MA plan data (CSVs + chunks)
-  2. Embeds all chunks and builds the FAISS index
-  3. Trains the XGBoost re-ranker model
+  1. Builds MA plan data from config.py (CSVs + text chunks)
+  2. Embeds all chunks using sentence-transformers and builds a FAISS index
+  3. Trains the XGBoost re-ranker model on chunk relevance features
+
+Re-run this script whenever you update plan data in config.py.
 """
 
 import os
