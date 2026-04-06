@@ -18,9 +18,7 @@ if not MISTRAL_API_KEY:
     st.error("MISTRAL_API_KEY not found. Create a .env file with your key.")
     st.stop()
 
-INDEX_PATH = os.path.join("data", "vectorstore", "faiss.index")
-CHUNK_PATH = os.path.join("data", "vectorstore", "chunks.pkl")
-MODEL_PATH = os.path.join("models", "xgb_reranker.pkl")
+INDEX_PATH = os.path.join("data", "vectorstore", "index.faiss")
 
 
 def auto_setup():
@@ -35,11 +33,8 @@ def load_resources():
     from rag.reranker import load_reranker
     from rag.embeddings import load_index
     from rag.pipeline import RAGPipeline
-    xgb_model, _ = load_reranker(MODEL_PATH)
-    index, chunks = load_index(INDEX_PATH, CHUNK_PATH)
-    embedder = __import__(
-        "sentence_transformers", fromlist=["SentenceTransformer"]
-    ).SentenceTransformer("all-MiniLM-L6-v2")
+    xgb_model = load_reranker()
+    index, chunks, embedder = load_index()
     return RAGPipeline(index, chunks, embedder, xgb_model, MISTRAL_API_KEY)
 
 
