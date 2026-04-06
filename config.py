@@ -26,6 +26,20 @@ MISTRAL_MODEL = "mistral-small-latest"
 TOP_K = 15   # number of FAISS candidates retrieved before re-ranking
 TOP_N = 5    # top chunks passed to the LLM after XGBoost re-ranking
 
+# ── Plan Data Schema ──────────────────────────────────────────────────────────
+# Column order for the PLAN_DATA tuples below.  Referenced by data_builder.py
+# when constructing the DataFrame so the schema is defined in one place.
+PLAN_COLUMNS = [
+    "carrier", "plan_name", "plan_type", "metal_tier",
+    "hsa_eligible", "connector_care",
+    "deductible_ind", "oop_max_ind",
+    "pcp_copay", "specialist_copay", "er_copay",
+    "urgent_care_copay", "preventive_copay",
+    "mental_health_out_copay", "imaging_copay", "lab_copay",
+    "inpatient_copay", "outpatient_surgery_copay",
+    "rx_generic_copay", "rx_pref_brand_copay",
+]
+
 # ── MA Licensed Carriers (MA DOI 2025) ────────────────────────────────────────
 MA_CARRIERS = [
     "Blue Cross Blue Shield MA",
