@@ -13,6 +13,19 @@ from config import MODELS_DIR
 
 MODEL_PATH = os.path.join(MODELS_DIR, "xgb_reranker.pkl")
 
+# 11 features extracted per (query, chunk) pair for the XGBoost re-ranker.
+# Must stay in sync with the return order of extract_features().
+#   faiss_score      — cosine similarity from FAISS (primary signal)
+#   keyword_overlap  — Jaccard overlap between query tokens and chunk tokens
+#   tier_match       — 1 if query metal tier matches chunk metadata tier
+#   carrier_match    — 1 if a carrier name from the query appears in chunk metadata
+#   type_match       — 1 if query plan type (HMO/PPO) matches chunk metadata
+#   is_connectorcare — 1 if chunk is a ConnectorCare subsidy chunk
+#   cc_query         — 1 if query contains subsidy/FPL keywords
+#   chunk_length     — normalised chunk length (0–1, capped at 2000 chars)
+#   premium_query    — 1 if query asks about cost/premium/price
+#   has_age          — 1 if a two-digit number (age proxy) appears in the query
+#   feedback_score   — running average rating from user feedback log
 FEATURE_NAMES = [
     "faiss_score", "keyword_overlap", "tier_match", "carrier_match",
     "type_match", "is_connectorcare", "cc_query", "chunk_length",
@@ -81,13 +94,15 @@ def train_reranker(chunks):
             feats = extract_features(query, chunk, 0.5)
             gX.append(feats)
 
+            # Relevance labels: 0 = irrelevant, 1 = relevant, 2 = highly relevant
             label = 0
             if is_cc and meta.get("chunk_type") == "connectorcare":
-                label = 2
+                label = 2  # exact match: subsidy query + ConnectorCare chunk
             elif rel_tier and rel_tier == meta.get("metal_tier", "").lower():
+                # tier matches — bump to 2 if carrier also matches, else 1
                 label = 2 if (rel_carrier and rel_carrier in meta.get("carrier", "").lower()) else 1
             elif rel_carrier and rel_carrier in meta.get("carrier", "").lower():
-                label = 1
+                label = 1  # partial match: only carrier aligns
             gy.append(label)
 
         X.extend(gX)
