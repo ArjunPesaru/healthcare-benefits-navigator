@@ -41,6 +41,9 @@ class RAGPipeline:
         self.xgb_model = xgb_model
         self.client    = Mistral(api_key=mistral_api_key)
 
+    # Keywords that signal the user is asking about HSA-eligible plans.
+    # Matched against the raw question so the enriched query context includes
+    # "HSA-eligible" even when the user's UI filter is set to "Any".
     _HSA_KEYWORDS = {"hsa", "health savings", "savings account", "high deductible", "hdhp"}
 
     def encode_query(self, question, filters=None):
@@ -91,7 +94,9 @@ class RAGPipeline:
                     filtered.append((chunk, score))
             else:
                 filtered.append((chunk, score))
-        return filtered if filtered else candidates  # fallback: keep all if none pass
+        # Fallback: if every plan exceeds the budget, return the full candidate list
+        # rather than an empty set — the LLM can still explain the cost gap.
+        return filtered if filtered else candidates
 
     def rerank(self, query, candidates, n=TOP_N):
         if not candidates:
@@ -101,6 +106,8 @@ class RAGPipeline:
         ranked = sorted(zip(candidates, scores), key=lambda x: x[1], reverse=True)
         return [c for (c, _), _ in ranked[:n]]
 
+    # Maximum characters accepted from the user's raw question.
+    # Truncation happens before enrichment so the context tags are always appended.
     _MAX_QUESTION_LEN = 500  # characters — guards against oversized LLM prompts
 
     def query(self, question, filters=None):
