@@ -18,6 +18,53 @@ if not MISTRAL_API_KEY:
     st.error("MISTRAL_API_KEY not found. Create a .env file with your key.")
     st.stop()
 
+INDEX_PATH = os.path.join("data", "vectorstore", "faiss.index")
+CHUNK_PATH = os.path.join("data", "vectorstore", "chunks.pkl")
+MODEL_PATH = os.path.join("models", "xgb_reranker.pkl")
+
+
+def auto_setup():
+    """Run one-time setup if the FAISS index does not exist yet."""
+    if not os.path.exists(INDEX_PATH):
+        with st.spinner("Building index for the first time — this takes ~2 minutes..."):
+            import setup as _setup  # noqa: F401
+
+
+@st.cache_resource(show_spinner="Loading models and index…")
+def load_resources():
+    from rag.reranker import load_reranker
+    from rag.embeddings import load_index
+    from rag.pipeline import RAGPipeline
+    xgb_model, _ = load_reranker(MODEL_PATH)
+    index, chunks = load_index(INDEX_PATH, CHUNK_PATH)
+    embedder = __import__(
+        "sentence_transformers", fromlist=["SentenceTransformer"]
+    ).SentenceTransformer("all-MiniLM-L6-v2")
+    return RAGPipeline(index, chunks, embedder, xgb_model, MISTRAL_API_KEY)
+
+
+def process_prompt(pipeline, prompt: str, filters: dict):
+    """Call the RAG pipeline and append the result to st.session_state.messages."""
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    with st.chat_message("assistant"):
+        with st.spinner("Searching plans…"):
+            result = pipeline.query(prompt, filters)
+        answer = result.get("answer", "Sorry, I could not find an answer.")
+        st.markdown(answer)
+        plans = result.get("ranked_plans", [])
+        if plans:
+            render_plan_table(plans)
+    st.session_state.messages.append({
+        "role":   "user",
+        "content": prompt,
+    })
+    st.session_state.messages.append({
+        "role":    "assistant",
+        "content": answer,
+        "plans":   plans,
+    })
+
 st.set_page_config(page_title="MA Health Navigator", page_icon="🏥", layout="wide")
 
 st.markdown("""
@@ -122,3 +169,31 @@ if not st.session_state.messages:
         if cols[i % 2].button(s, key=f"sug_{i}", use_container_width=True):
             st.session_state.pending_prompt = s
             st.rerun()
+
+# Re-render previous conversation turns
+for msg in st.session_state.messages:
+    with st.chat_message(msg["role"]):
+        st.markdown(msg["content"])
+        if msg["role"] == "assistant" and msg.get("plans"):
+            render_plan_table(msg["plans"])
+
+auto_setup()
+pipeline = load_resources()
+
+filters = {
+    "age":          age,
+    "tier":         tier,
+    "carrier":      carrier,
+    "connectorcare": cc,
+}
+
+# Handle suggestion button click
+if st.session_state.pending_prompt:
+    prompt = st.session_state.pending_prompt
+    st.session_state.pending_prompt = None
+    process_prompt(pipeline, prompt, filters)
+    st.rerun()
+
+# Handle typed input
+if user_input := st.chat_input("Ask about MA health plans…"):
+    process_prompt(pipeline, user_input, filters)
