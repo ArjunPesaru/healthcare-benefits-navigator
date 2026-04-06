@@ -81,6 +81,29 @@ with st.container(border=True):
         cc = st.checkbox("ConnectorCare eligible ⓘ",
                          help="Subsidised plans for households up to 500% FPL")
 
+def render_plan_table(plans: list):
+    """Render ranked plans as a styled DataFrame table."""
+    if not plans:
+        return
+    rows = []
+    for p in plans:
+        rows.append({
+            "Rank":        p.get("rank", ""),
+            "Plan":        p.get("plan_name", ""),
+            "Carrier":     p.get("carrier", ""),
+            "Tier":        p.get("metal_tier", ""),
+            "Type":        p.get("plan_type", ""),
+            "Premium/mo":  p.get("monthly_premium", ""),
+            "Deductible":  p.get("deductible", ""),
+            "PCP Copay":   p.get("primary_care_copay", ""),
+            "Spec Copay":  p.get("specialist_copay", ""),
+            "ConnectorCare": p.get("connector_care", ""),
+            "Why":         p.get("why_ranked_here", ""),
+        })
+    df = pd.DataFrame(rows)
+    st.dataframe(df, use_container_width=True, hide_index=True)
+
+
 if "messages"       not in st.session_state: st.session_state.messages       = []
 if "pending_prompt" not in st.session_state: st.session_state.pending_prompt = None
 
