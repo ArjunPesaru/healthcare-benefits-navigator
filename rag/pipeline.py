@@ -41,20 +41,25 @@ class RAGPipeline:
         self.xgb_model = xgb_model
         self.client    = Mistral(api_key=mistral_api_key)
 
+    _HSA_KEYWORDS = {"hsa", "health savings", "savings account", "high deductible", "hdhp"}
+
     def encode_query(self, question, filters=None):
-        if not filters:
-            return question
         ctx = []
-        if filters.get("age"):
-            ctx.append(f"age {filters['age']}")
-        if filters.get("tier") and filters["tier"] != "Any":
-            ctx.append(filters["tier"])
-        if filters.get("carrier") and filters["carrier"] != "Any":
-            ctx.append(filters["carrier"])
-        if filters.get("connectorcare"):
-            ctx.append("ConnectorCare eligible")
-        if filters.get("max_premium"):
-            ctx.append(f"monthly premium under ${filters['max_premium']}")
+        if filters:
+            if filters.get("age"):
+                ctx.append(f"age {filters['age']}")
+            if filters.get("tier") and filters["tier"] != "Any":
+                ctx.append(filters["tier"])
+            if filters.get("carrier") and filters["carrier"] != "Any":
+                ctx.append(filters["carrier"])
+            if filters.get("connectorcare"):
+                ctx.append("ConnectorCare eligible")
+            if filters.get("max_premium"):
+                ctx.append(f"monthly premium under ${filters['max_premium']}")
+        # Auto-detect HSA intent from the question itself
+        q_lower = question.lower()
+        if any(kw in q_lower for kw in self._HSA_KEYWORDS):
+            ctx.append("HSA-eligible")
         return f"[{', '.join(ctx)}] {question}" if ctx else question
 
     def semantic_search(self, query_text, k=TOP_K):
