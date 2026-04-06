@@ -1,8 +1,36 @@
+# Secrets
 .env
+
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Generated data and model artifacts
 feedback/
 data/raw/
 data/processed/
+data/vectorstore/
+models/*.pkl
+models/*.bin
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/
