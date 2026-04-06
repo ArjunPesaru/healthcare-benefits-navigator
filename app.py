@@ -80,3 +80,22 @@ with st.container(border=True):
     with col5:
         cc = st.checkbox("ConnectorCare eligible ⓘ",
                          help="Subsidised plans for households up to 500% FPL")
+
+if "messages"       not in st.session_state: st.session_state.messages       = []
+if "pending_prompt" not in st.session_state: st.session_state.pending_prompt = None
+
+if not st.session_state.messages:
+    st.markdown("💡 **Try asking:**")
+    suggestions = [
+        f"What is the premium for a {age}-year-old on a Silver HMO?",
+        "What is ConnectorCare and how do I qualify?",
+        "Compare Harvard Pilgrim and BCBS Gold plans",
+        "Which plans are HSA eligible in Massachusetts?",
+        "What is the ER copay on a Bronze plan?",
+        "What does a Platinum plan cover vs Gold?",
+    ]
+    cols = st.columns(2)
+    for i, s in enumerate(suggestions):
+        if cols[i % 2].button(s, key=f"sug_{i}", use_container_width=True):
+            st.session_state.pending_prompt = s
+            st.rerun()
