@@ -1,9 +1,20 @@
+# LLM client
 mistralai==1.2.0
+
+# Frontend
 streamlit>=1.32.0
+
+# Embeddings and vector search
 sentence-transformers>=2.6.0
 faiss-cpu>=1.7.4
+
+# Re-ranker and ML utilities
 xgboost>=2.0.0
 scikit-learn>=1.4.0
+
+# Data handling
 pandas>=2.0.0
 numpy>=1.24.0
+
+# Environment
 python-dotenv>=1.0.0
