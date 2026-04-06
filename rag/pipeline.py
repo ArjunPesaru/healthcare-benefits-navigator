@@ -101,8 +101,11 @@ class RAGPipeline:
         ranked = sorted(zip(candidates, scores), key=lambda x: x[1], reverse=True)
         return [c for (c, _), _ in ranked[:n]]
 
+    _MAX_QUESTION_LEN = 500  # characters — guards against oversized LLM prompts
+
     def query(self, question, filters=None):
         """End-to-end RAG: encode → retrieve → filter by cost → re-rank → LLM."""
+        question   = question.strip()[:self._MAX_QUESTION_LEN]
         enriched   = self.encode_query(question, filters)
         candidates = self.semantic_search(enriched)
 
