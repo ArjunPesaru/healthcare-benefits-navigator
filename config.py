@@ -1,6 +1,11 @@
 """
 Configuration constants for the MA Health Benefits Navigator.
-All MA-specific data sourced from CMS PUF 2025 and MA Health Connector 2025 filings.
+
+Data sources:
+  - CMS Benefits & Cost Sharing PUF 2025 (benefit categories, cost-sharing)
+  - MA Health Connector 2025 filings (ConnectorCare plan parameters, Table 4)
+  - MA DOI 2025 (licensed carrier list)
+  - CMS MA state-specific age curve (2:1 statutory cap)
 """
 
 import os
@@ -18,8 +23,8 @@ for _d in [DATA_RAW, DATA_PROC, VECTORSTORE, MODELS_DIR, FEEDBACK_DIR]:
 
 # ── Mistral ────────────────────────────────────────────────────────────────────
 MISTRAL_MODEL = "mistral-small-latest"
-TOP_K = 15   # FAISS candidates
-TOP_N = 5    # chunks passed to LLM after re-ranking
+TOP_K = 15   # number of FAISS candidates retrieved before re-ranking
+TOP_N = 5    # top chunks passed to the LLM after XGBoost re-ranking
 
 # ── MA Licensed Carriers (MA DOI 2025) ────────────────────────────────────────
 MA_CARRIERS = [
@@ -71,7 +76,7 @@ MA_AGE_MULTIPLIERS = {
     **{a: 2.000 for a in range(54, 65)},
 }
 
-# Base monthly premiums by metal tier (MA 2025, age-21 reference rate)
+# Base monthly premiums by metal tier (MA 2025, age-21 reference rate, before subsidies)
 BASE_PREMIUMS = {
     "Catastrophic": 220,
     "Bronze":       320,
