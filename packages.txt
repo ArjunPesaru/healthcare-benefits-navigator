@@ -1,1 +1,3 @@
+# System-level packages required for Streamlit Cloud deployment
+# libgomp1: OpenMP runtime needed by XGBoost for multi-threaded tree building
 libgomp1
