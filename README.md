@@ -1,4 +1,4 @@
-# MA Health Benefits Navigator
+# Health Benefits Navigator
 
 A Retrieval-Augmented Generation (RAG) system for exploring Massachusetts health insurance plans. Ask plain-English questions about coverage, copays, deductibles, and plan comparisons — and get answers grounded in real 2025 MA Health Connector data.
 
