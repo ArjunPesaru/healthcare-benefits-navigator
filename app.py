@@ -6,6 +6,12 @@ Requires: python setup.py (run once to build index + models)
 """
 
 import os
+
+# Must be set before torch/faiss import to prevent OMP segfault on Mac
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+
 import numpy as np
 import streamlit as st
 import pandas as pd
@@ -284,7 +290,6 @@ with tab_chat:
 
     auto_setup()
     pipeline = load_resources()
-    # Pass max_premium=None when the slider is at max (no filter)
     filters = {
         "age":         age,
         "tier":        tier,
@@ -309,18 +314,21 @@ with tab_chat:
 with tab_dash:
     df = get_national_data()
 
-    # Abbreviation → full state name lookup
     abbr_to_state = dict(zip(df["Abbr"], df["State"]))
 
-    # ── Session state for map-click selection ──────────────────────────────────
     if "dash_state" not in st.session_state:
         st.session_state["dash_state"] = "All States (National)"
 
-    st.markdown("### US Health Insurance Marketplace — 2025")
-    st.caption("Click any state on the map **or** use the dropdown to filter all charts. "
-               "All 50 states + DC  •  CMS ACA Marketplace 2025.")
+    # Apply pending map-click BEFORE the selectbox is instantiated
+    if "_pending_map_state" in st.session_state:
+        new = st.session_state.pop("_pending_map_state")
+        st.session_state["dash_state"] = new
+        st.session_state["state_sel"]  = new   # safe here — widget not yet created
 
-    # Dropdown — stays in sync with map clicks
+    st.markdown("### US Health Insurance Marketplace")
+    st.caption("Click any state on the map **or** use the dropdown to filter all charts. "
+               "All 50 states + DC.")
+
     state_options = ["All States (National)"] + sorted(df["State"].tolist())
     sel_col, reset_col, _ = st.columns([1.4, 0.4, 3])
     with sel_col:
@@ -372,10 +380,26 @@ with tab_dash:
     # ── Row 1: Map + Tier donut ────────────────────────────────────────────────
     col_map, col_tier = st.columns([1.6, 1])
 
+    # State centroids for click detection overlay
+    _CENTROIDS = {
+        "AL":(32.8,-86.8),"AK":(64.2,-153.4),"AZ":(34.3,-111.1),"AR":(34.8,-92.2),
+        "CA":(36.8,-119.4),"CO":(39.0,-105.5),"CT":(41.6,-72.7),"DE":(39.0,-75.5),
+        "FL":(27.8,-81.6),"GA":(32.7,-83.6),"HI":(20.9,-157.5),"ID":(44.4,-114.5),
+        "IL":(40.3,-89.0),"IN":(39.8,-86.1),"IA":(42.0,-93.5),"KS":(38.5,-98.3),
+        "KY":(37.5,-85.3),"LA":(31.2,-91.8),"ME":(45.4,-69.2),"MD":(39.0,-76.8),
+        "MA":(42.3,-71.8),"MI":(44.2,-85.5),"MN":(46.4,-93.1),"MS":(32.7,-89.7),
+        "MO":(38.5,-92.3),"MT":(46.9,-110.5),"NE":(41.5,-99.9),"NV":(38.5,-117.1),
+        "NH":(43.7,-71.6),"NJ":(40.0,-74.5),"NM":(34.5,-106.0),"NY":(42.2,-74.9),
+        "NC":(35.6,-79.4),"ND":(47.5,-100.5),"OH":(40.4,-82.8),"OK":(35.6,-97.5),
+        "OR":(43.9,-120.6),"PA":(40.6,-77.2),"RI":(41.7,-71.6),"SC":(33.9,-80.9),
+        "SD":(44.4,-100.2),"TN":(35.9,-86.7),"TX":(31.5,-99.3),"UT":(39.3,-111.1),
+        "VT":(44.0,-72.7),"VA":(37.8,-78.2),"WA":(47.4,-120.6),"WV":(38.6,-80.5),
+        "WI":(44.3,-89.6),"WY":(42.8,-107.6),"DC":(38.9,-77.0),
+    }
+
     with col_map:
         st.markdown("#### Plans by State")
-        st.caption("Color intensity shows the number of available plans per state. "
-                   "Click a state to filter all visualizations below.")
+        st.caption("Click a state to filter all visualizations below.")
 
         map_df = df.copy()
         if not national:
@@ -396,29 +420,55 @@ with tab_dash:
             hover_data={"Total Plans": True, "Carriers": True,
                         "Avg Silver Premium": True, "Abbr": False},
         )
+
+        # Invisible scatter markers at state centroids — scatter traces fire
+        # on_select reliably; choropleth traces do not.
+        _c_abbrs  = [a for a in _CENTROIDS if a in abbr_to_state]
+        _c_lats   = [_CENTROIDS[a][0] for a in _c_abbrs]
+        _c_lons   = [_CENTROIDS[a][1] for a in _c_abbrs]
+        _c_names  = [abbr_to_state[a] for a in _c_abbrs]
+        # FIX 1: opacity=0.01 so pointer events register
+        fig_map.add_trace(go.Scattergeo(
+            lat=_c_lats, lon=_c_lons,
+            mode="markers",
+            marker=dict(size=50, opacity=0.01, color="#ffffff"),
+            text=_c_names,
+            customdata=_c_abbrs,
+            hoverinfo="none",
+            showlegend=False,
+        ))
+
         fig_map.update_layout(
             **{k: v for k, v in CHART_LAYOUT.items()},
-            coloraxis_colorbar=dict(title="Plans", tickfont=dict(color="#ffffff"),
-                                    titlefont=dict(color="#ffffff")),
+            coloraxis_colorbar=dict(
+                title=dict(text="Plans", font=dict(color="#ffffff")),
+                tickfont=dict(color="#ffffff"),
+            ),
             geo=dict(bgcolor="#000000", lakecolor="#000000",
                      landcolor="#111111", subunitcolor="#333333"),
             clickmode="event+select",
         )
 
-        # Capture map click — on_select triggers a rerun with selection data
         map_event = st.plotly_chart(
             fig_map, use_container_width=True,
             on_select="rerun", selection_mode="points", key="map_chart",
         )
-        # Update selected state from map click
-        if (map_event and map_event.selection
-                and map_event.selection.get("points")):
-            clicked_abbr = map_event.selection["points"][0].get("location")
+
+        # ROOT CAUSE FIX: selection is a PlotlySelectionState object, not a dict.
+        # .get("points") always returns None — must use getattr or direct attribute.
+        sel    = getattr(map_event, "selection", None)
+        points = getattr(sel, "points", None) or []
+
+        for pt in points:
+            curve = pt.get("curve_number")   # Streamlit uses snake_case
+            clicked_abbr = pt.get("location") if curve == 0 else pt.get("customdata") if curve == 1 else None
+
             if clicked_abbr and clicked_abbr in abbr_to_state:
                 new_state = abbr_to_state[clicked_abbr]
                 if new_state != st.session_state["dash_state"]:
-                    st.session_state["dash_state"] = new_state
+                    st.session_state["_pending_map_state"] = new_state
                     st.rerun()
+                break
 
     with col_tier:
         st.markdown("#### Plans by Metal Tier")
