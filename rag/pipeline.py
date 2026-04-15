@@ -23,26 +23,24 @@ SYSTEM_PROMPT = (
     "or 1-877-623-6765. Always mention plan name and carrier. "
     "Premiums are identical for all genders (ACA §2701). "
     "Mention ConnectorCare if the user asks about cost assistance. "
-    "Your 'answer' field must: (1) directly answer the question, (2) explain the key factors "
-    "you considered when ranking plans (e.g. premium cost, deductible, copay, plan type, "
-    "HSA eligibility, ConnectorCare), and (3) briefly justify why the top-ranked plan best "
-    "fits the user's situation. Be specific — mention actual dollar amounts and plan names. "
-    "Each 'why_ranked_here' must explain the specific reason that plan earned its rank "
-    "compared to others: mention what it does better (lower premium, lower deductible, "
-    "better copays) and any trade-offs. Never leave it vague. "
+    "The user profile (age, filters) in the prompt already contains all personal info — "
+    "NEVER ask the user for their age or any other info; use the profile directly. "
+    "Your 'answer' field: 2-3 sentences directly answering the question with key dollar amounts. "
+    "Each 'why_ranked_here': 1 sentence max — key reason with one number (e.g. 'Lowest premium at $320/mo'). "
     "Respond ONLY with a valid JSON object — no markdown, no backticks — with this structure: "
-    '{"answer": "<detailed narrative with reasoning, dollar amounts, and justification>", '
+    '{"answer": "<2-3 sentence narrative>", '
     '"ranked_plans": [{"rank": 1, "plan_name": "", "carrier": "", '
     '"plan_id": "", "metal_tier": "", "plan_type": "", '
     '"monthly_premium": "", "deductible": "", '
     '"primary_care_copay": "", "specialist_copay": "", '
     '"connector_care": "", '
-    '"why_ranked_here": "<specific reason: what makes this rank here vs others, with numbers>"}]}'
+    '"why_ranked_here": "<one sentence reason>"}]}'
 )
 
 
 class RAGPipeline:
-    def __init__(self, index, chunks, embedder, xgb_model, mistral_api_key):
+    def __init__(self, index, chunks: list, embedder, xgb_model, mistral_api_key: str) -> None:
+        """Initialise the RAG pipeline with pre-loaded index, chunks, and models."""
         self.index     = index
         self.chunks    = chunks
         self.embedder  = embedder
@@ -54,7 +52,8 @@ class RAGPipeline:
     # "HSA-eligible" even when the user's UI filter is set to "Any".
     _HSA_KEYWORDS = {"hsa", "health savings", "savings account", "high deductible", "hdhp"}
 
-    def encode_query(self, question, filters=None):
+    def encode_query(self, question: str, filters: dict = None) -> str:
+        """Prepend user-profile context to the question for richer semantic search."""
         ctx = []
         if filters:
             if filters.get("age"):
@@ -73,7 +72,8 @@ class RAGPipeline:
             ctx.append("HSA-eligible")
         return f"[{', '.join(ctx)}] {question}" if ctx else question
 
-    def semantic_search(self, query_text, k=TOP_K):
+    def semantic_search(self, query_text: str, k: int = TOP_K) -> list:
+        """Run FAISS nearest-neighbour search and return (chunk, score) pairs."""
         q_emb = self.embedder.encode([query_text]).astype("float32")
         faiss.normalize_L2(q_emb)
         scores, indices = self.index.search(q_emb, k)
@@ -106,7 +106,8 @@ class RAGPipeline:
         # rather than an empty set — the LLM can still explain the cost gap.
         return filtered if filtered else candidates
 
-    def rerank(self, query, candidates, n=TOP_N):
+    def rerank(self, query: str, candidates: list, n: int = TOP_N) -> list:
+        """Re-rank FAISS candidates with XGBoost and return the top-n chunks."""
         if not candidates:
             return []
         X_re   = np.array([extract_features(query, c, s) for c, s in candidates])
@@ -136,9 +137,26 @@ class RAGPipeline:
             for c in top_chunks
         )
 
+        # Build a plain-English user profile from filters so the LLM never asks again
+        profile_parts = []
+        if filters:
+            if filters.get("age"):
+                profile_parts.append(f"Age: {filters['age']}")
+            if filters.get("tier") and filters["tier"] != "Any":
+                profile_parts.append(f"Preferred metal tier: {filters['tier']}")
+            if filters.get("carrier") and filters["carrier"] != "Any":
+                profile_parts.append(f"Preferred carrier: {filters['carrier']}")
+            if filters.get("connectorcare"):
+                profile_parts.append("ConnectorCare eligible: Yes")
+            if filters.get("max_premium"):
+                profile_parts.append(f"Max monthly premium: ${filters['max_premium']}")
+        profile_str = ("User profile: " + ", ".join(profile_parts) + "\n\n") if profile_parts else ""
+
         user_prompt = (
-            f"Context:\n{context[:5000]}\n\n"
+            f"{profile_str}"
+            f"Context:\n{context[:3500]}\n\n"
             f"Question: {question}\n\n"
+            "Use the user profile above when answering — do NOT ask for age or other info already provided. "
             "Return ONLY a JSON object (no backticks, no markdown) with keys: "
             "'answer' (narrative string) and 'ranked_plans' (array of plans found, "
             "ranked best to worst for this user, each with: rank, plan_name, carrier, plan_id, "
@@ -153,7 +171,7 @@ class RAGPipeline:
         resp = self.client.chat.complete(
             model=MISTRAL_MODEL,
             messages=messages,
-            max_tokens=1200,
+            max_tokens=2500,
             temperature=0.1,
         )
         raw       = resp.choices[0].message.content.strip()
@@ -161,12 +179,22 @@ class RAGPipeline:
         try:
             result = json.loads(raw_clean)
         except json.JSONDecodeError:
-            result = {"answer": raw, "ranked_plans": []}
+            # Truncated JSON — try to salvage the answer field via regex
+            m = re.search(r'"answer"\s*:\s*"((?:[^"\\]|\\.)*)"', raw_clean)
+            if m:
+                answer_text = m.group(1).replace('\\"', '"')
+            else:
+                answer_text = (
+                    "I wasn't able to generate a complete response. "
+                    "Please try rephrasing your question or asking about a specific plan."
+                )
+            result = {"answer": answer_text, "ranked_plans": []}
 
         result["top_chunks"] = top_chunks
         return result
 
-    def log_feedback(self, query, answer, rating, top_chunks, comment=""):
+    def log_feedback(self, query: str, answer: str, rating: int, top_chunks: list, comment: str = "") -> None:
+        """Append a user feedback record to the CSV feedback log."""
         row = {
             "timestamp": datetime.now().isoformat(),
             "query":     query,

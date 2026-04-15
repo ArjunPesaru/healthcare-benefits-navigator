@@ -51,7 +51,7 @@ TRAINING_QUERIES = [
 ]
 
 
-def extract_features(query, chunk, faiss_score):
+def extract_features(query: str, chunk: dict, faiss_score: float) -> list:
     """Extract 11 query-chunk relevance features for re-ranking."""
     text = chunk.get("text", "").lower()
     meta = chunk.get("metadata", {})
@@ -83,7 +83,7 @@ def extract_features(query, chunk, faiss_score):
     ]
 
 
-def train_reranker(chunks):
+def train_reranker(chunks: list) -> "XGBRanker":
     """Train the XGBoost re-ranker on labelled training queries."""
     X, y, groups = [], [], []
 
@@ -117,6 +117,7 @@ def train_reranker(chunks):
         subsample=0.8,
         tree_method="hist",
         eval_metric="ndcg",
+        random_state=42,  # fixed seed for reproducibility
     )
     model.fit(np.array(X), np.array(y), group=np.array(groups), verbose=False)
 
@@ -127,7 +128,7 @@ def train_reranker(chunks):
     return model
 
 
-def load_reranker():
+def load_reranker() -> "XGBRanker":
     """Load the trained XGBoost re-ranker from disk."""
     if not os.path.exists(MODEL_PATH):
         raise FileNotFoundError(

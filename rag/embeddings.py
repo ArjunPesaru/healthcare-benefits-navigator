@@ -16,7 +16,8 @@ CHUNKS_META_PATH  = os.path.join(VECTORSTORE, "chunks_metadata.pkl")
 CHUNKS_JSONL_PATH = os.path.join(DATA_PROC,   "chunks.jsonl")
 
 
-def load_chunks_from_jsonl(path=CHUNKS_JSONL_PATH):
+def load_chunks_from_jsonl(path: str = CHUNKS_JSONL_PATH) -> list:
+    """Load and return all chunks from a JSONL file, skipping blank lines."""
     chunks = []
     with open(path, "r") as f:
         for line in f:
@@ -57,7 +58,8 @@ def build_index(chunks=None, model_name="all-MiniLM-L6-v2"):
     return index, chunks, embedder
 
 
-def load_index():
+def load_index() -> tuple:
+    """Load the FAISS index, chunk metadata, and sentence-transformer embedder from disk."""
     """Load FAISS index, chunks, and embedder from disk."""
     if not os.path.exists(FAISS_INDEX_PATH):
         raise FileNotFoundError(

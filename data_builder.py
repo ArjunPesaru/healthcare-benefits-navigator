@@ -19,16 +19,19 @@ from config import (
 
 # ── Helper Functions ───────────────────────────────────────────────────────────
 
-def get_issuer_id(carrier):
+def get_issuer_id(carrier: str) -> int:
+    """Return a synthetic CMS-style issuer ID (10000-based) for the given carrier."""
     unique_carriers = list(dict.fromkeys(c for c, *_ in MA_PLANS))
     return 10000 + unique_carriers.index(carrier) * 100
 
 
-def get_plan_id(carrier, idx):
+def get_plan_id(carrier: str, idx: int) -> str:
+    """Build a synthetic CMS plan ID string from carrier and sequential index."""
     return f"{get_issuer_id(carrier)}MA{idx+1:04d}0001-00"
 
 
-def format_copay(val):
+def format_copay(val) -> str:
+    """Format a copay value as a dollar string; pass through strings unchanged."""
     if isinstance(val, str):
         return val
     return f"${val}" if val > 0 else "$0"
@@ -343,6 +346,68 @@ def build_chunks(df_master, df_cc):
     return chunks
 
 
+# ── Data Quality Validation ────────────────────────────────────────────────────
+
+def validate_data(df: pd.DataFrame) -> None:
+    """
+    Run data quality checks on the master plan DataFrame and print a report.
+
+    Checks null counts in critical columns, duplicate plan names, premium
+    range validity, and metal tier correctness. Prints warnings for any
+    issues found but does not raise exceptions — suitable for pipeline logging.
+
+    Args:
+        df: The master plan DataFrame returned by build_master().
+    """
+    issues = 0
+    print("\n  Data Quality Report:")
+
+    critical_cols = ["plan_name", "carrier_name", "metal_tier", "plan_type"]
+    for col in critical_cols:
+        if col not in df.columns:
+            print(f"    WARNING: critical column '{col}' is missing")
+            issues += 1
+            continue
+        null_count = int(df[col].isnull().sum())
+        if null_count > 0:
+            print(f"    WARNING: {null_count} null values in '{col}'")
+            issues += 1
+        else:
+            print(f"    OK: no nulls in '{col}'")
+
+    if "plan_name" in df.columns:
+        dup_count = int(df["plan_name"].duplicated().sum())
+        if dup_count > 0:
+            print(f"    WARNING: {dup_count} duplicate plan names")
+            issues += 1
+        else:
+            print(f"    OK: no duplicate plan names")
+
+    prem_cols = [c for c in df.columns if c.startswith("premium_age")]
+    if prem_cols:
+        prem_num = df[prem_cols].apply(pd.to_numeric, errors="coerce")
+        min_p = float(prem_num.min().min())
+        max_p = float(prem_num.max().max())
+        if min_p < 50 or max_p > 10000:
+            print(f"    WARNING: premiums outside expected range ${min_p:.0f}–${max_p:.0f}")
+            issues += 1
+        else:
+            print(f"    OK: premiums in expected range ${min_p:.0f}–${max_p:.0f}")
+
+    if "metal_tier" in df.columns:
+        valid_tiers = {"Bronze", "Silver", "Gold", "Platinum", "Catastrophic"}
+        actual = set(df["metal_tier"].dropna().unique())
+        bad = actual - valid_tiers
+        if bad:
+            print(f"    WARNING: unexpected metal tiers: {bad}")
+            issues += 1
+        else:
+            print(f"    OK: all metal tiers valid ({sorted(actual)})")
+
+    status = "PASSED" if issues == 0 else f"{issues} issue(s) found"
+    print(f"    {status}: {len(df)} plans checked")
+
+
 # ── Main ───────────────────────────────────────────────────────────────────────
 
 def run():
@@ -363,6 +428,7 @@ def run():
     df_master.to_csv(os.path.join(DATA_PROC, "ma_plans_2025.csv"), index=False)
     df_cc.to_csv(    os.path.join(DATA_PROC, "connectorcare.csv"),  index=False)
     print(f"  Saved processed data: {len(df_master)} plans, {len(df_cc)} ConnectorCare types")
+    validate_data(df_master)
 
     chunks = build_chunks(df_master, df_cc)
     chunks_path = os.path.join(DATA_PROC, "chunks.jsonl")

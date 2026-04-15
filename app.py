@@ -32,14 +32,16 @@ if not MISTRAL_API_KEY:
 INDEX_PATH = os.path.join("data", "vectorstore", "index.faiss")
 
 
-def auto_setup():
+def auto_setup() -> None:
+    """Build the FAISS index and train the re-ranker on first launch if not already present."""
     if not os.path.exists(INDEX_PATH):
         with st.spinner("Building index for the first time — this takes ~2 minutes..."):
             import setup as _setup  # noqa: F401
 
 
 @st.cache_resource(show_spinner="Loading models and index…")
-def load_resources():
+def load_resources() -> "RAGPipeline":
+    """Load and cache the FAISS index, embedder, XGBoost re-ranker, and RAG pipeline."""
     from rag.reranker import load_reranker
     from rag.embeddings import load_index
     from rag.pipeline import RAGPipeline
@@ -59,7 +61,8 @@ CHART_LAYOUT = dict(
 )
 
 
-def render_plan_table(plans: list):
+def render_plan_table(plans: list) -> None:
+    """Render a Streamlit dataframe and ranked-plan expanders from an LLM-returned plan list."""
     if not plans:
         return
     rows = []
@@ -94,14 +97,15 @@ def render_plan_table(plans: list):
             )
 
 
-def process_prompt(pipeline, prompt: str, filters: dict):
+def process_prompt(pipeline, prompt: str, filters: dict) -> None:
+    """Send a user prompt through the RAG pipeline and render the response with plan table."""
     with st.chat_message("user"):
         st.markdown(prompt)
     with st.chat_message("assistant"):
         with st.spinner("Searching plans…"):
             result = pipeline.query(prompt, filters)
         answer = result.get("answer", "Sorry, I could not find an answer.")
-        st.markdown(answer)
+        st.markdown(answer.replace("$", "&#36;"), unsafe_allow_html=True)
         plans = result.get("ranked_plans", [])
         if plans:
             st.markdown("---")
@@ -110,9 +114,51 @@ def process_prompt(pipeline, prompt: str, filters: dict):
     st.session_state.messages.append({"role": "assistant", "content": answer, "plans": plans})
 
 
+# ── ACA age rating factors (relative to age-21 benchmark) ─────────────────────
+_ACA_AGE_FACTORS = {
+    18:0.635,19:0.635,20:0.635,21:1.000,22:1.000,23:1.000,24:1.000,
+    25:1.004,26:1.024,27:1.048,28:1.087,29:1.119,30:1.127,
+    31:1.143,32:1.159,33:1.175,34:1.190,35:1.198,
+    36:1.214,37:1.222,38:1.230,39:1.238,40:1.246,
+    41:1.262,42:1.270,43:1.286,44:1.302,45:1.317,
+    46:1.349,47:1.381,48:1.413,49:1.444,50:1.460,
+    51:1.492,52:1.532,53:1.571,54:1.651,55:1.698,
+    56:1.746,57:1.794,58:1.857,59:1.889,60:1.984,
+    61:2.079,62:2.143,63:2.206,64:2.270,
+}
+_PREM_COLS = ["Avg Bronze Premium","Avg Silver Premium","Avg Gold Premium","Avg Platinum Premium"]
+
+# Enrollment share by age — older groups have higher marketplace participation
+_AGE_ENROLL_FACTORS = {
+    18:0.55,19:0.58,20:0.62,21:0.65,22:0.68,23:0.70,24:0.72,
+    25:0.75,26:0.78,27:0.80,28:0.83,29:0.85,30:0.87,
+    31:0.88,32:0.90,33:0.91,34:0.92,35:0.93,
+    36:0.94,37:0.95,38:0.96,39:0.97,40:0.98,
+    41:1.00,42:1.02,43:1.04,44:1.06,45:1.08,
+    46:1.11,47:1.14,48:1.17,49:1.20,50:1.23,
+    51:1.26,52:1.29,53:1.32,54:1.35,55:1.38,
+    56:1.41,57:1.44,58:1.47,59:1.50,60:1.53,
+    61:1.55,62:1.57,63:1.59,64:1.60,
+}
+
+def aca_age_factor(age: int) -> float:
+    """Return the ACA 2:1 age-rating multiplier relative to the age-21 benchmark premium."""
+    return _ACA_AGE_FACTORS.get(int(age), 1.0)
+
+def enrollment_age_factor(age: int) -> float:
+    """Return the marketplace enrollment-share multiplier for a given age."""
+    return _AGE_ENROLL_FACTORS.get(int(age), 1.0)
+
+
 # ── Dashboard data ─────────────────────────────────────────────────────────────
 @st.cache_data
-def get_national_data():
+def get_national_data() -> pd.DataFrame:
+    """
+    Generate and cache a synthetic national health insurance marketplace dataset.
+
+    Uses a fixed random seed (42) for full reproducibility. Returns one row per
+    US state/territory with plan counts, type breakdowns, and average premiums.
+    """
     rng = np.random.default_rng(42)
     states = [
         ("Alabama","AL"),("Alaska","AK"),("Arizona","AZ"),("Arkansas","AR"),
@@ -283,7 +329,10 @@ with tab_chat:
 
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
-            st.markdown(msg["content"])
+            content = msg["content"]
+            if msg["role"] == "assistant":
+                content = content.replace("$", "&#36;")
+            st.markdown(content, unsafe_allow_html=True)
             if msg["role"] == "assistant" and msg.get("plans"):
                 st.markdown("---")
                 render_plan_table(msg["plans"])
@@ -298,14 +347,15 @@ with tab_chat:
         "max_premium": max_premium if max_premium < 1500 else None,
     }
 
+    if user_input := st.chat_input("Ask about MA health plans…"):
+        st.session_state.pending_prompt = user_input
+        st.rerun()
+
     if st.session_state.pending_prompt:
         prompt = st.session_state.pending_prompt
         st.session_state.pending_prompt = None
         process_prompt(pipeline, prompt, filters)
         st.rerun()
-
-    if user_input := st.chat_input("Ask about MA health plans…"):
-        process_prompt(pipeline, user_input, filters)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -319,18 +369,21 @@ with tab_dash:
     if "dash_state" not in st.session_state:
         st.session_state["dash_state"] = "All States (National)"
 
-    # Apply pending map-click BEFORE the selectbox is instantiated
+    # Apply pending map-click or reset BEFORE the selectbox is instantiated
     if "_pending_map_state" in st.session_state:
         new = st.session_state.pop("_pending_map_state")
         st.session_state["dash_state"] = new
         st.session_state["state_sel"]  = new   # safe here — widget not yet created
+    if st.session_state.pop("_pending_reset", False):
+        st.session_state["dash_state"] = "All States (National)"
+        st.session_state["state_sel"]  = "All States (National)"
 
     st.markdown("### US Health Insurance Marketplace")
     st.caption("Click any state on the map **or** use the dropdown to filter all charts. "
                "All 50 states + DC.")
 
     state_options = ["All States (National)"] + sorted(df["State"].tolist())
-    sel_col, reset_col, _ = st.columns([1.4, 0.4, 3])
+    sel_col, reset_col, age_col = st.columns([1.4, 0.3, 1.3])
     with sel_col:
         selected_state = st.selectbox(
             "Filter by State", state_options,
@@ -341,17 +394,30 @@ with tab_dash:
     with reset_col:
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("Reset", key="reset_state"):
-            st.session_state["dash_state"] = "All States (National)"
+            st.session_state["_pending_reset"] = True
             st.rerun()
+    with age_col:
+        dash_age = st.slider("Your Age", 18, 64,
+                             st.session_state.get("dash_age", 30),
+                             key="dash_age_slider")
+        st.session_state["dash_age"] = dash_age
 
-    national = selected_state == "All States (National)"
-    view     = df if national else df[df["State"] == selected_state]
-    row      = None if national else view.iloc[0]
-    nat_avg  = {
-        "Avg Bronze Premium":   int(df["Avg Bronze Premium"].mean()),
-        "Avg Silver Premium":   int(df["Avg Silver Premium"].mean()),
-        "Avg Gold Premium":     int(df["Avg Gold Premium"].mean()),
-        "Avg Platinum Premium": int(df["Avg Platinum Premium"].mean()),
+    # Scale premiums and enrollment by age factors
+    age_factor   = aca_age_factor(dash_age)
+    enroll_factor = enrollment_age_factor(dash_age)
+    df_aged = df.copy()
+    for _c in _PREM_COLS:
+        df_aged[_c] = (df_aged[_c] * age_factor).round().astype(int)
+    df_aged["Enrollment"] = (df_aged["Enrollment"] * enroll_factor).round().astype(int)
+
+    national  = selected_state == "All States (National)"
+    view      = df_aged if national else df_aged[df_aged["State"] == selected_state]
+    row       = None if national else view.iloc[0]
+    nat_avg   = {
+        "Avg Bronze Premium":   int(df_aged["Avg Bronze Premium"].mean()),
+        "Avg Silver Premium":   int(df_aged["Avg Silver Premium"].mean()),
+        "Avg Gold Premium":     int(df_aged["Avg Gold Premium"].mean()),
+        "Avg Platinum Premium": int(df_aged["Avg Platinum Premium"].mean()),
     }
 
     # ── KPI row ────────────────────────────────────────────────────────────────
@@ -361,7 +427,7 @@ with tab_dash:
         k2.metric("Total Carriers",     f"{df['Carriers'].sum():,}")
         k3.metric("States Covered",     f"{len(df)}")
         k4.metric("Avg Silver Premium", f"${nat_avg['Avg Silver Premium']}/mo")
-        k5.metric("Total Enrollment",   f"{df['Enrollment'].sum() / 1_000_000:.1f}M")
+        k5.metric("Total Enrollment",   f"{df_aged['Enrollment'].sum() / 1_000_000:.1f}M")
     else:
         nat_silver   = nat_avg["Avg Silver Premium"]
         state_silver = int(row["Avg Silver Premium"])
@@ -500,7 +566,7 @@ with tab_dash:
     with col_prem:
         if national:
             st.markdown("#### Avg Monthly Premium by Tier")
-            st.caption("National average unsubsidised monthly premium for a 21-year-old "
+            st.caption(f"National average unsubsidised monthly premium for a {dash_age}-year-old "
                        "across each metal tier.")
             prem_df = pd.DataFrame({
                 "Tier":    ["Bronze", "Silver", "Gold", "Platinum"],
@@ -569,13 +635,13 @@ with tab_dash:
             st.markdown("#### Top 15 States by Number of Plans")
             st.caption("States with the most marketplace plan options, "
                        "giving consumers the widest choice of coverage.")
-            bar_df = df.nlargest(15, "Total Plans").sort_values("Total Plans").copy()
+            bar_df = df_aged.nlargest(15, "Total Plans").sort_values("Total Plans").copy()
             bar_df["_c"] = bar_df["Total Plans"]
         else:
             st.markdown(f"#### {selected_state} vs Top States (by plans)")
             st.caption(f"How {selected_state} (highlighted in red) compares against "
                        f"the states with the most available plans.")
-            bar_df = df.nlargest(15, "Total Plans")
+            bar_df = df_aged.nlargest(15, "Total Plans")
             if view.index[0] not in bar_df.index:
                 bar_df = pd.concat([bar_df, view]).head(16)
             bar_df = bar_df.sort_values("Total Plans").copy()
@@ -595,15 +661,15 @@ with tab_dash:
     with col_sil:
         if national:
             st.markdown("#### Avg Silver Premium — Top 15 Costliest States")
-            st.caption("States with the highest average unsubsidised Silver plan premiums, "
-                       "useful for understanding regional cost-of-coverage differences.")
-            sil_df = df.nlargest(15, "Avg Silver Premium").sort_values("Avg Silver Premium").copy()
+            st.caption(f"Highest average Silver plan premiums for age {dash_age}, "
+                       "showing regional cost-of-coverage differences.")
+            sil_df = df_aged.nlargest(15, "Avg Silver Premium").sort_values("Avg Silver Premium").copy()
             sil_df["_c"] = sil_df["Avg Silver Premium"]
         else:
             st.markdown(f"#### {selected_state} Silver Premium vs Top 15")
-            st.caption(f"Where {selected_state}'s Silver premium ranks among "
+            st.caption(f"Where {selected_state}'s Silver premium (age {dash_age}) ranks among "
                        f"the most expensive states nationally.")
-            sil_df = df.nlargest(15, "Avg Silver Premium")
+            sil_df = df_aged.nlargest(15, "Avg Silver Premium")
             if view.index[0] not in sil_df.index:
                 sil_df = pd.concat([sil_df, view])
             sil_df = sil_df.sort_values("Avg Silver Premium").copy()
@@ -626,7 +692,7 @@ with tab_dash:
     st.markdown("#### Full State-by-State Breakdown")
     st.caption("Complete plan inventory per state — sortable by any column. "
                "Filtered to the selected state when one is active.")
-    disp = df[[
+    disp = df_aged[[
         "State", "Total Plans", "Carriers", "HMO", "PPO", "EPO",
         "Bronze", "Silver", "Gold", "Platinum",
         "Avg Bronze Premium", "Avg Silver Premium",

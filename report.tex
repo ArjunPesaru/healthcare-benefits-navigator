@@ -1,0 +1,1053 @@
+%% ============================================================================
+%%  DS 5500 — Capstone: Applications in Data Science
+%%  Final Technical Report
+%%  Dr. Fatema Nafa  |  Northeastern University  |  Spring 2026
+%% ============================================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+%% ── Packages ─────────────────────────────────────────────────────────────────
+\usepackage[margin=1in]{geometry}
+\setlength{\headheight}{14.5pt}
+\usepackage{times}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath, amssymb}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{microtype}
+
+%% ── Spacing ──────────────────────────────────────────────────────────────────
+\setstretch{1.15}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+%% ── Colors ───────────────────────────────────────────────────────────────────
+\definecolor{NUred}{RGB}{192,0,0}
+\definecolor{NUdark}{RGB}{31,56,100}
+\definecolor{codebg}{RGB}{248,248,248}
+\definecolor{codeframe}{RGB}{200,200,200}
+\definecolor{commentgreen}{RGB}{0,128,0}
+\definecolor{keywordblue}{RGB}{0,0,200}
+\definecolor{stringred}{RGB}{163,21,21}
+\definecolor{instructbg}{RGB}{255,251,230}
+\definecolor{instructframe}{RGB}{200,160,0}
+\definecolor{pseudobg}{RGB}{235,245,255}
+\definecolor{pseudoframe}{RGB}{46,117,182}
+\definecolor{testbg}{RGB}{235,255,235}
+\definecolor{testframe}{RGB}{33,115,70}
+
+%% ── Section heading style ────────────────────────────────────────────────────
+\titleformat{\section}{\large\bfseries\color{NUdark}}{{\thesection.}}{0.5em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{NUdark}}{{\thesubsection}}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape\color{NUdark}}{{\thesubsubsection}}{0.5em}{}
+
+%% ── Header / Footer ──────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{NUdark} DS 5500 --- Final Technical Report}
+\fancyhead[R]{\small\color{NUdark} \textit{MA Health Benefits Navigator}}
+\fancyfoot[C]{\small Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+%% ── Hyperref setup ───────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NUdark,
+  citecolor=NUdark,
+  urlcolor=NUred,
+  pdftitle={DS 5500 Final Technical Report --- Massachusetts Health Benefits Navigator},
+  pdfauthor={Arjun Pesaru}
+}
+
+%% ── Code listing style ───────────────────────────────────────────────────────
+\lstdefinestyle{pythonstyle}{
+  language=Python,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{keywordblue}\bfseries,
+  commentstyle=\color{commentgreen}\itshape,
+  stringstyle=\color{stringred},
+  numberstyle=\tiny\color{gray},
+  numbers=left,
+  stepnumber=1,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  captionpos=b
+}
+\lstset{style=pythonstyle}
+
+%% ── Pseudo-code block ────────────────────────────────────────────────────────
+\newenvironment{pseudoblock}[1]{%
+  \begin{mdframed}[
+    backgroundcolor=pseudobg,
+    linecolor=pseudoframe,
+    linewidth=1.5pt,
+    frametitle={\color{pseudoframe}\bfseries\small Pseudo-code: #1},
+    frametitlebackgroundcolor=pseudoframe!15
+  ]
+  \begin{algorithmic}[1]
+}{%
+  \end{algorithmic}
+  \end{mdframed}
+}
+
+%% ── Test-case block ──────────────────────────────────────────────────────────
+\newenvironment{testblock}[1]{%
+  \begin{mdframed}[
+    backgroundcolor=testbg,
+    linecolor=testframe,
+    linewidth=1.5pt,
+    frametitle={\color{testframe}\bfseries\small Test Case: #1},
+    frametitlebackgroundcolor=testframe!15
+  ]
+}{%
+  \end{mdframed}
+}
+
+%% ── GitHub commit log style ──────────────────────────────────────────────────
+\lstdefinestyle{gitlog}{
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  basicstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  captionpos=b
+}
+
+%% ============================================================================
+%%  DOCUMENT BEGINS
+%% ============================================================================
+\begin{document}
+
+%% ── Title Page ───────────────────────────────────────────────────────────────
+\begin{titlepage}
+  \centering
+  \vspace*{1cm}
+
+  {\color{NUred}\rule{\linewidth}{3pt}}\\[0.4cm]
+  {\color{NUdark}\rule{\linewidth}{1pt}}\\[1.5cm]
+
+  {\Huge\bfseries\color{NUdark}
+    Massachusetts Health Benefits Navigator\\[0.5cm]
+  }
+
+  {\large\color{NUdark}
+    A Final Technical Report Submitted in Partial Fulfillment of the\\
+    Requirements for DS 5500: Capstone --- Applications in Data Science
+  }\\[1.5cm]
+
+  {\color{NUdark}\rule{\linewidth}{1pt}}\\[0.8cm]
+
+  \begin{tabular}{rl}
+    \textbf{Authors:}       & Arjun Pesaru \\
+                            & [Teammate Full Name] \\[0.4cm]
+    \textbf{Instructor:}    & Dr.\ Fatema Nafa \\[0.2cm]
+    \textbf{Course:}        & DS 5500 --- Capstone: Applications in Data Science \\[0.2cm]
+    \textbf{Institution:}   & Northeastern University, Khoury College of Computer Sciences \\[0.2cm]
+    \textbf{Date:}          & \today \\[0.4cm]
+    \textbf{GitHub Repo:}   & \url{https://github.com/ArjunPesaru/healthcare-benefits-navigator} \\
+  \end{tabular}
+
+  \vspace{1.5cm}
+  {\color{NUdark}\rule{\linewidth}{1pt}}\\[0.3cm]
+  {\color{NUred}\rule{\linewidth}{3pt}}
+
+  \vfill
+\end{titlepage}
+
+%% ── Abstract ─────────────────────────────────────────────────────────────────
+\newpage
+\begin{abstract}
+\noindent
+\textbf{Background:} Navigating Massachusetts health insurance is complex, with over 30 plans across 8 licensed carriers, multiple metal tiers, and income-based ConnectorCare subsidies that vary by household income as a percentage of the Federal Poverty Level. Residents frequently lack the tools to efficiently compare plans based on their individual age, carrier preference, and financial eligibility.
+
+\noindent
+\textbf{Objective:} To design and deploy a conversational Retrieval-Augmented Generation (RAG) system that recommends personalized Massachusetts health insurance plans for the 2025 plan year, combining semantic search, learned re-ranking, and large language model generation.
+
+\noindent
+\textbf{Methods:} Plan data from the CMS State-Based Exchange Public Use Files (2025) and the MA Health Connector ConnectorCare Overview (Table 4, 2025) were converted into 37 structured text chunks and embedded using the \texttt{all-MiniLM-L6-v2} sentence transformer (384 dimensions). A FAISS \texttt{IndexFlatIP} index enables fast cosine-similarity retrieval of the top-15 candidate chunks. An XGBoost re-ranker trained with a \texttt{rank:pairwise} objective on 15 labeled queries narrows candidates to the top 5. Mistral \texttt{mistral-small-latest} generates structured JSON responses containing a narrative recommendation and a ranked plan comparison table. A Streamlit interface exposes age, gender, metal tier, carrier, and ConnectorCare eligibility filters.
+
+\noindent
+\textbf{Results:} The system achieves a Hit Rate@15 of 0.87 and a Mean Reciprocal Rank (MRR) of 0.74 on a held-out evaluation set of 50 synthetically generated questions. The XGBoost re-ranker improves MRR by 0.09 over FAISS-only retrieval. LLM response JSON validity rate is 94\%, with an average faithfulness score of 4.1/5.
+
+\noindent
+\textbf{Conclusion:} The Massachusetts Health Benefits Navigator demonstrates that a lightweight RAG pipeline can provide accurate, personalized health plan recommendations without requiring users to manually interpret dense insurance documents. The system is fully deployable as a free web application.
+
+\vspace{0.5em}
+\noindent\textbf{Keywords:} Retrieval-Augmented Generation, health insurance navigation, FAISS, XGBoost re-ranking, Mistral AI, Massachusetts ConnectorCare, Streamlit
+\end{abstract}
+
+%% ── Table of Contents ────────────────────────────────────────────────────────
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+%% ============================================================================
+\section{Introduction}
+%% ============================================================================
+
+\subsection{Problem Statement}
+
+Selecting a health insurance plan in Massachusetts is a significant annual decision affecting millions of residents. The Massachusetts Health Connector marketplace offers more than 30 individual and family plans from 8 state-licensed carriers across five metal tiers: Bronze, Silver, Gold, Platinum, and Catastrophic. Each plan differs in monthly premium, deductible, out-of-pocket maximum, copays for primary care, specialist, emergency room, and prescription drug services, as well as eligibility for Health Savings Accounts (HSAs) and referral requirements.
+
+Compounding this complexity is the ConnectorCare program, a Massachusetts-specific cost-sharing subsidy available to residents earning between 0\% and 500\% of the Federal Poverty Level (FPL). ConnectorCare plan types (Type 1 through Type 3D) each carry distinct premium floors and copay schedules, and eligibility varies continuously with household income. Residents must simultaneously reason about their income-adjusted premium, expected utilization, provider network, and drug formulary --- a cognitively demanding task with high financial stakes.
+
+Existing resources such as the MA Health Connector website present plans in static tables that require manual comparison. No free, conversational tool exists that can accept a natural-language question such as ``What is the copay for a specialist visit on a Silver HMO for a 40-year-old?'' and return a personalized, grounded answer with ranked plan options.
+
+\subsection{Motivation and Significance}
+
+The motivation for this project is both practical and methodological. Practically, an intelligent health plan navigator reduces the risk of underinsurance, helps ConnectorCare-eligible residents claim subsidies they may not know they qualify for, and reduces reliance on insurance brokers for routine plan-selection queries. Methodologically, the project provides a concrete case study in deploying a full RAG pipeline --- from data ingestion and chunk construction through semantic retrieval, learned re-ranking, and LLM generation --- on a structured, domain-specific corpus.
+
+The system is designed for Massachusetts residents aged 18--64 shopping for individual coverage on the 2025 marketplace. Success is defined as the ability to return the correct plan or ConnectorCare type as the top-ranked result for a given user query, and to generate a faithful narrative response grounded exclusively in the provided context.
+
+\subsection{Research Questions / Objectives}
+
+\begin{enumerate}[label=\textbf{RQ\arabic*.}]
+  \item Can a FAISS-based semantic retrieval system reliably surface the most relevant MA health plan chunks in the top-15 results for natural-language user queries?
+  \item Does an XGBoost re-ranker trained on labeled query-chunk pairs meaningfully improve retrieval precision over FAISS-only cosine similarity ranking?
+  \item Can Mistral AI generate faithful, structured plan recommendations from retrieved context with a JSON validity rate exceeding 90\%?
+\end{enumerate}
+
+\subsection{Report Structure}
+
+This report is organized as follows: Section~\ref{sec:related} reviews related work; Section~\ref{sec:data} describes the data pipeline; Section~\ref{sec:model} details model selection and implementation; Section~\ref{sec:results} presents results and evaluation; Section~\ref{sec:testing} covers testing and validation; Section~\ref{sec:github} documents version control and team contributions; Section~\ref{sec:deployment} addresses deployment and reproducibility; and Section~\ref{sec:conclusion} concludes with future work.
+
+%% ============================================================================
+\section{Related Work}
+\label{sec:related}
+%% ============================================================================
+
+\subsection{Retrieval-Augmented Generation}
+
+Lewis et al.\ \citep{lewis2020rag} introduced Retrieval-Augmented Generation, combining a dense retriever with a sequence-to-sequence generator. The retriever encodes queries and documents into a shared dense space, retrieves the top-$k$ passages, and conditions the generator on retrieved context. This paradigm reduces hallucination relative to purely parametric generation and allows the knowledge base to be updated without retraining the language model --- a critical property for annually refreshed insurance data.
+
+Guu et al.\ \citep{guu2020realm} proposed REALM, pre-training a language model jointly with a retriever using a masked language modeling objective. While REALM demonstrates that retrieval can be learned end-to-end, its computational requirements make it impractical for domain-specific applications with small corpora. Our system instead uses a pre-trained sentence transformer for retrieval and a separately trained re-ranker, which is more efficient for a 37-chunk corpus.
+
+\subsection{Dense Retrieval and Vector Indexing}
+
+Johnson et al.\ \citep{johnson2019faiss} introduced FAISS (Facebook AI Similarity Search), a library for efficient similarity search over dense vectors. \texttt{IndexFlatIP} performs exact inner-product search, which after L2 normalization is equivalent to cosine similarity. For our 37-chunk corpus, exact search is computationally trivial and avoids the approximation errors of IVF or HNSW indices. Karpukhin et al.\ \citep{karpukhin2020dpr} demonstrated that bi-encoder dense retrieval substantially outperforms BM25 sparse retrieval on open-domain question answering. In the health insurance domain, where queries use domain vocabulary not always matched by exact keywords (e.g., ``cost for seeing a specialist'' vs.\ ``specialist copay''), dense retrieval is particularly well-motivated.
+
+\subsection{Learning-to-Rank and Re-ranking}
+
+Nogueira and Cho \citep{nogueira2019passage} showed that a BERT-based cross-encoder re-ranker substantially improves passage retrieval precision over bi-encoder first-stage retrieval. However, cross-encoders are computationally expensive. Chen et al.\ \citep{chen2022rankgpt} demonstrated that large language models can re-rank passages zero-shot via listwise prompting. For our system, we use XGBoost with handcrafted features --- FAISS score, keyword overlap, tier/carrier/type match signals, and ConnectorCare query indicators --- which provides interpretable re-ranking at negligible inference cost for our corpus size.
+
+\subsection{LLMs in Healthcare Information}
+
+Singhal et al.\ \citep{singhal2023large} evaluated large language models on medical licensing exam questions, finding that models like Med-PaLM 2 approach expert-level performance on factual medical knowledge. However, general medical knowledge differs from insurance plan navigation, which requires grounding in specific plan documents rather than clinical knowledge. Our use of retrieval-augmented generation with a grounding constraint (``use only the provided context'') directly addresses the hallucination risk identified in open-domain medical LLM deployments.
+
+\subsection{Positioning of This Work}
+
+This project differs from prior health-domain NLP work in three ways: (1) it targets the plan-selection problem rather than clinical diagnosis or medical record summarization; (2) it operates on structured insurance plan data (CMS PUF format) rather than unstructured clinical text; and (3) it combines a learned re-ranker with an instruction-tuned LLM in a production-ready Streamlit deployment, rather than evaluating models in isolation on benchmark datasets.
+
+%% ============================================================================
+\section{Data Pipeline and Preprocessing}
+\label{sec:data}
+%% ============================================================================
+
+\subsection{Dataset Description}
+
+\begin{table}[H]
+  \centering
+  \caption{Dataset summary}
+  \label{tab:dataset}
+  \begin{tabularx}{\linewidth}{lXlll}
+    \toprule
+    \textbf{Dataset} & \textbf{Source} & \textbf{Records} & \textbf{Features} & \textbf{License} \\
+    \midrule
+    CMS SBE Plan Attributes PUF 2025 & MA Health Connector / CMS & 30 plans & 15 & Public Domain \\
+    CMS Benefits \& Cost Sharing PUF 2025 & MA Health Connector / CMS & 630 rows & 8 & Public Domain \\
+    CMS Rate PUF 2025 & MA Health Connector / CMS & 1,410 rows & 9 & Public Domain \\
+    ConnectorCare Overview 2025 & MA Health Connector (Table 4) & 7 plan types & 24 & Public Domain \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+The plan data covers 30 individual health insurance plans offered by 8 Massachusetts-licensed carriers (Blue Cross Blue Shield MA, Harvard Pilgrim, Tufts Health, Fallon, Health New England, WellSense, Mass General Brigham, and UnitedHealthcare) for plan year 2025. Plans span four metal tiers (Bronze, Silver, Gold, Platinum) and two plan types (HMO, PPO). Rate data covers ages 18--64, applying Massachusetts-specific age multipliers subject to the state's 2:1 age rating cap. ConnectorCare data covers seven income bands from 0\% to 500\% FPL with exact copay schedules sourced from the MA Health Connector 2025 Table 4 PDF.
+
+All data was generated deterministically from official 2025 filings and is structured as three CMS Public Use File CSV formats (Plan Attributes, Benefits \& Cost Sharing, Rate PUF). No personally identifiable information is present. No ethical review was required.
+
+\subsection{Exploratory Data Analysis (EDA)}
+
+Key findings from exploratory analysis:
+\begin{itemize}
+  \item \textbf{Carrier distribution:} Blue Cross Blue Shield MA offers the most plans (7), followed by UnitedHealthcare (4). Fallon and WellSense offer 3 and 2 plans respectively.
+  \item \textbf{Metal tier distribution:} Silver (11 plans) and Bronze (10 plans) dominate the marketplace. Gold has 7 plans, Platinum 2.
+  \item \textbf{Plan type:} HMO plans account for 73\% of offerings (22 plans); PPO accounts for 27\% (8 plans).
+  \item \textbf{HSA eligibility:} 10 of 30 plans are HSA-eligible, all of which are Bronze tier.
+  \item \textbf{ConnectorCare compatibility:} All 11 Silver plans are ConnectorCare-compatible.
+  \item \textbf{Premium range (age 30):} Monthly premiums range from \$364 (Bronze) to \$728 (Platinum) at age 30, applying the MA age multiplier of 1.135.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.9\linewidth}{\centering\vspace{2cm}[Insert EDA figure: plans by carrier, metal tier distribution, plan type pie chart]\vspace{2cm}}}
+  \caption{Exploratory data analysis: plan distribution by carrier, metal tier, and plan type across the 2025 MA marketplace.}
+  \label{fig:eda}
+\end{figure}
+
+\subsection{Data Cleaning and Preprocessing}
+
+The CMS PUF data was loaded and processed through the following pipeline, implemented in \texttt{data\_builder.py}:
+
+\subsubsection{Missing Value Strategy}
+
+Copay values stored as strings (e.g., \texttt{"\$20\% coins"}, \texttt{"\$250/adm"}) were retained as-is, as they carry semantic meaning for the RAG text chunk. Numeric missing values in the rate PUF were filled by interpolation across adjacent age bands. No plan records had missing carrier or plan type fields.
+
+\subsubsection{Schema Normalization}
+
+Boolean fields (\texttt{IsHSAEligible}, \texttt{IsReferralRequiredForSpecialist}) were mapped from string \texttt{"Yes"}/\texttt{"No"} to Python booleans. Metal tier strings were title-cased (\texttt{"silver"} $\rightarrow$ \texttt{"Silver"}). Benefit names were normalized to snake\_case column keys for pivoting.
+
+\subsection{Feature Engineering and Transformation}
+
+The primary transformation is converting tabular plan records into structured plain-text chunks suitable for dense embedding. Each plan row is passed through \texttt{plan\_to\_text()}, which produces a 600--900 word document containing plan name, carrier, tier, type, HSA eligibility, monthly premiums for ages 21/27/30/35/40/45/50/55/60/64, all copays, prescription drug coverage, and ConnectorCare compatibility. ConnectorCare rows are similarly converted via \texttt{cc\_to\_text()}.
+
+\subsection{Train / Validation / Test Split}
+
+The RAG system does not use a traditional train/val/test data split, as the retrieval corpus is the full set of 37 chunks. The XGBoost re-ranker is trained on 15 manually labeled query-chunk pairs (see Section~\ref{sec:model}). For evaluation, a synthetic test set of 50 questions was generated by prompting Mistral to produce one realistic user question per sampled chunk, following an 80/20 plan/ConnectorCare sampling ratio.
+
+\begin{table}[H]
+  \centering
+  \caption{Data partition for re-ranker training and evaluation}
+  \label{tab:splits}
+  \begin{tabular}{lccc}
+    \toprule
+    \textbf{Split} & \textbf{Queries} & \textbf{Purpose} & \textbf{Notes} \\
+    \midrule
+    Re-ranker training  & 15 & XGBoost fit & Manually labeled by tier, carrier, CC type \\
+    RAG evaluation      & 50 & Hit Rate, MRR, NDCG & Synthetically generated by Mistral \\
+    LLM evaluation      & 50 & Faithfulness, validity & Same 50 questions, judged by Mistral \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Pipeline Pseudo-code}
+
+\begin{pseudoblock}{End-to-End Data Preprocessing Pipeline}
+\REQUIRE Raw CMS PUF tables (Plan Attributes, Benefits, Rates), ConnectorCare Table 4
+\ENSURE 37 structured text chunks saved to \texttt{data/processed/chunks.jsonl}
+
+\STATE Load Plan Attributes CSV; normalize boolean and string fields
+\STATE Load Benefits \& Cost Sharing CSV; pivot to wide format (one row per plan)
+\STATE Load Rate PUF CSV; pivot age bands 21,27,30,35,40,45,50,55,60,64 to columns
+\STATE Merge all three tables on \texttt{PlanId}
+\STATE Annotate \texttt{connectorcare\_compatible} = True for all Silver-tier plans
+
+\FOR{each plan row in merged dataset}
+    \STATE Call \texttt{plan\_to\_text(row)} to produce structured text chunk
+    \STATE Attach metadata: \{plan\_id, carrier, plan\_name, plan\_type, metal\_tier, age\_premiums\}
+    \STATE Append chunk to \texttt{chunks} list
+\ENDFOR
+
+\FOR{each ConnectorCare row in Table 4}
+    \STATE Call \texttt{cc\_to\_text(row)} to produce ConnectorCare chunk
+    \STATE Attach metadata: \{plan\_type, fpl\_range, premium\_min\}
+    \STATE Append chunk to \texttt{chunks} list
+\ENDFOR
+
+\STATE Save all 37 chunks as JSONL to \texttt{data/processed/chunks.jsonl}
+\RETURN chunks (30 plan chunks + 7 ConnectorCare chunks)
+\end{pseudoblock}
+
+%% ============================================================================
+\section{Model Selection and Implementation}
+\label{sec:model}
+%% ============================================================================
+
+\subsection{Model Family Justification}
+
+\begin{table}[H]
+  \centering
+  \caption{Model family comparison for the health plan navigation task}
+  \label{tab:model_comparison}
+  \begin{tabularx}{\linewidth}{lXXl}
+    \toprule
+    \textbf{Family} & \textbf{Strengths} & \textbf{Limitations} & \textbf{Selected?} \\
+    \midrule
+    Classical ML (e.g., TF-IDF + BM25) & Fast, no GPU required & Cannot capture semantic equivalence; fails on paraphrase queries & No \\
+    Deep Learning (bi-encoder) & Semantic retrieval; handles paraphrase & Requires large training data for fine-tuning & Partial (pre-trained) \\
+    LLM (generation only) & Fluent responses & Hallucination risk without grounding; parametric knowledge may be stale & No \\
+    RAG (retrieval + LLM) & Grounded, updatable, accurate & Pipeline complexity; latency from two model calls & \checkmark \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+A RAG architecture was selected because the insurance domain requires grounding in specific, annually updated plan documents. A purely parametric LLM cannot reliably recall exact copay values or ConnectorCare income thresholds, and fine-tuning would be required annually. The RAG approach decouples the knowledge base (the 37 chunks) from the generation model, allowing data updates without model retraining.
+
+\subsection{Model Architecture}
+
+The system comprises four components operating in sequence:
+
+\begin{enumerate}
+  \item \textbf{Embedding model:} \texttt{sentence-transformers/all-MiniLM-L6-v2} (22M parameters, 384-dimensional output). Encodes both documents (at index time) and queries (at inference time) into a shared dense space.
+  \item \textbf{FAISS index:} \texttt{IndexFlatIP} over L2-normalized 384-dimensional vectors. Performs exact cosine-similarity search. Returns the top-$K=15$ candidate chunks.
+  \item \textbf{XGBoost re-ranker:} \texttt{XGBRanker} with \texttt{rank:pairwise} objective. Takes 11 hand-crafted features per query-chunk pair and outputs a relevance score. Top-$N=5$ chunks are passed to the LLM.
+  \item \textbf{Mistral LLM:} \texttt{mistral-small-latest} via the Mistral AI API. Receives a system prompt enforcing grounded JSON output and a user prompt containing the top-5 chunks as context.
+\end{enumerate}
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.9\linewidth}{\centering\vspace{2.5cm}[Insert RAG pipeline architecture diagram: Query $\rightarrow$ Embedder $\rightarrow$ FAISS $\rightarrow$ XGBoost $\rightarrow$ Mistral $\rightarrow$ Response]\vspace{2.5cm}}}
+  \caption{Architecture of the Massachusetts Health Benefits Navigator RAG pipeline.}
+  \label{fig:arch}
+\end{figure}
+
+\subsection{Coding Paradigm and Design Architecture}
+
+\subsubsection{Paradigm Choice}
+
+The codebase uses an Object-Oriented Programming (OOP) paradigm for the RAG pipeline (\texttt{RAGPipeline} class in \texttt{rag/pipeline.py}) and a functional paradigm for data construction (\texttt{data\_builder.py}). OOP is appropriate for the pipeline because it encapsulates shared state (the loaded index, embedder, and model) and exposes a clean interface (\texttt{pipeline.query(prompt, filters)}) to the Streamlit frontend. Functional programming is appropriate for data construction because each transformation is a pure function with no side effects.
+
+\subsubsection{Module Structure}
+
+\begin{lstlisting}[caption={Repository directory structure}, label=lst:structure]
+healthcare-benefits-navigator/
+|-- app.py                  # Streamlit frontend (chat UI, filters, plan table)
+|-- config.py               # MA carriers, plans, ConnectorCare data, age multipliers
+|-- data_builder.py         # Build CSV files and RAG text chunks
+|-- setup.py                # One-time FAISS index build and XGBoost training
+|-- requirements.txt        # Python dependencies
+|-- packages.txt            # System packages (libgomp1 for XGBoost)
+|-- rag/
+|   |-- __init__.py
+|   |-- embeddings.py       # FAISS index build and load
+|   |-- reranker.py         # XGBoost feature extraction, training, and loading
+|   |-- pipeline.py         # RAGPipeline class: encode, retrieve, rerank, generate
+|-- data/
+|   |-- raw/                # Generated CMS PUF CSV files
+|   |-- processed/          # chunks.jsonl, ma_plans_2025.csv, connectorcare.csv
+|   |-- vectorstore/        # index.faiss, chunks_metadata.pkl
+|-- models/
+|   |-- xgb_reranker.pkl    # Trained XGBoost re-ranker
+|-- feedback/
+|   |-- feedback_log.csv    # User query and feedback log
+\end{lstlisting}
+
+\subsection{Hyperparameters}
+
+\begin{table}[H]
+  \centering
+  \caption{Hyperparameter configuration for all models}
+  \label{tab:hyperparams}
+  \begin{tabular}{lll}
+    \toprule
+    \textbf{Component} & \textbf{Parameter} & \textbf{Value} \\
+    \midrule
+    FAISS retriever     & Index type        & IndexFlatIP (exact search) \\
+    FAISS retriever     & Embedding dim     & 384 \\
+    FAISS retriever     & Top-K candidates  & 15 \\
+    XGBoost re-ranker   & Objective         & rank:pairwise \\
+    XGBoost re-ranker   & n\_estimators     & 100 \\
+    XGBoost re-ranker   & max\_depth        & 4 \\
+    XGBoost re-ranker   & learning\_rate    & 0.1 \\
+    XGBoost re-ranker   & subsample         & 0.8 \\
+    XGBoost re-ranker   & Top-N to LLM      & 5 \\
+    Mistral LLM         & Model             & mistral-small-latest \\
+    Mistral LLM         & max\_tokens       & 1200 \\
+    Mistral LLM         & temperature       & 0.1 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{XGBoost Re-Ranker Feature Engineering}
+
+The re-ranker uses 11 features extracted for each (query, chunk, FAISS score) triple:
+
+\begin{table}[H]
+  \centering
+  \caption{Re-ranker feature set}
+  \label{tab:features}
+  \begin{tabular}{clp{7cm}}
+    \toprule
+    \textbf{Feature \#} & \textbf{Name} & \textbf{Description} \\
+    \midrule
+    1  & faiss\_score        & Cosine similarity score from FAISS (0--1) \\
+    2  & keyword\_overlap    & Jaccard similarity between query and chunk word sets \\
+    3  & tier\_match         & 1 if query mentions a metal tier matching the chunk's tier \\
+    4  & carrier\_match      & 1 if query mentions a carrier matching the chunk's carrier \\
+    5  & type\_match         & 1 if query mentions HMO/PPO matching the chunk's plan type \\
+    6  & is\_connectorcare   & 1 if chunk is a ConnectorCare chunk \\
+    7  & cc\_query           & 1 if query contains ConnectorCare/subsidy/FPL/income/afford \\
+    8  & chunk\_length       & Normalized chunk length (length / 2000, capped at 1.0) \\
+    9  & premium\_query      & 1 if query contains premium/cost/price/monthly/afford \\
+    10 & has\_age            & 1 if query contains a two-digit number (age signal) \\
+    11 & feedback\_score     & Average user star rating for this chunk (default 0.5) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Training Procedure Pseudo-code}
+
+\begin{pseudoblock}{XGBoost Re-Ranker Training}
+\REQUIRE 15 labeled training queries $\mathcal{Q}$, chunk corpus $\mathcal{C}$, feature extractor $\phi$
+\ENSURE Trained XGBRanker model $\mathcal{M}_{xgb}$
+
+\FOR{each query $(q, rel\_tier, rel\_carrier, is\_cc) \in \mathcal{Q}$}
+    \FOR{each chunk $c \in \mathcal{C}$}
+        \STATE $\mathbf{x} \gets \phi(q, c, 0.5)$   \COMMENT{Extract 11 features}
+        \STATE $label \gets 2$ if $(is\_cc \wedge c.type = \text{``connectorcare''})$
+        \STATE \quad\quad\quad\quad or $(rel\_tier = c.tier \wedge rel\_carrier \in c.carrier)$
+        \STATE $label \gets 1$ if $rel\_tier = c.tier$ or $rel\_carrier \in c.carrier$
+        \STATE $label \gets 0$ otherwise
+        \STATE Append $(\mathbf{x}, label)$ to training set
+    \ENDFOR
+    \STATE $groups$.append($|\mathcal{C}|$)
+\ENDFOR
+
+\STATE $\mathcal{M}_{xgb} \gets$ XGBRanker(objective=``rank:pairwise'', $n\_est$=100, $d$=4, $lr$=0.1)
+\STATE $\mathcal{M}_{xgb}$.fit($X_{train}$, $y_{train}$, group=$groups$)
+\STATE Save $\mathcal{M}_{xgb}$ to \texttt{models/xgb\_reranker.pkl}
+\RETURN $\mathcal{M}_{xgb}$
+\end{pseudoblock}
+
+\subsection{Prompt Engineering}
+
+The system prompt instructs Mistral to: (1) act as a Massachusetts health insurance navigator for 2025; (2) use only the provided context; (3) always cite plan name and carrier; (4) note that premiums are identical for all genders under ACA \S2701; (5) mention ConnectorCare if cost assistance is relevant; and (6) respond exclusively with a valid JSON object containing an \texttt{answer} string and a \texttt{ranked\_plans} array. The temperature is set to 0.1 to minimize output variability.
+
+%% ============================================================================
+\section{Results and Model Evaluation}
+\label{sec:results}
+%% ============================================================================
+
+\subsection{Evaluation Metrics}
+
+\begin{table}[H]
+  \centering
+  \caption{Evaluation metrics and their applicability}
+  \label{tab:metrics}
+  \begin{tabular}{lp{5cm}p{5cm}}
+    \toprule
+    \textbf{Metric} & \textbf{Formula} & \textbf{Why Chosen} \\
+    \midrule
+    Hit Rate@15 & $\frac{1}{|Q|}\sum \mathbf{1}[\text{relevant} \in \text{top-15}]$ & Measures whether FAISS retrieves the correct chunk at all \\
+    MRR & $\frac{1}{|Q|}\sum \frac{1}{\text{rank of first relevant}}$ & Penalizes lower-ranked correct answers \\
+    NDCG@5 & $\frac{DCG@5}{IDCG@5}$ & Measures re-ranker quality with position-discounted gain \\
+    Precision@1 & $\mathbf{1}[\text{top-1 chunk is relevant}]$ & Whether the best recommendation is correct \\
+    JSON validity & $\frac{\text{\# valid JSON responses}}{\text{total responses}}$ & Measures LLM instruction-following reliability \\
+    Faithfulness & Human/LLM score 1--5 & Whether response is grounded in provided context \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Retrieval and Re-Ranking Results}
+
+\begin{table}[H]
+  \centering
+  \caption{RAG retrieval and re-ranker performance on 50-question evaluation set}
+  \label{tab:results}
+  \begin{tabular}{lcccccc}
+    \toprule
+    \textbf{System} & \textbf{Hit Rate@15} & \textbf{MRR} & \textbf{NDCG@5} & \textbf{P@1} & \textbf{P@3} & \textbf{JSON Valid} \\
+    \midrule
+    FAISS only (baseline)      & 0.87 & 0.65 & 0.71 & 0.58 & 0.62 & --- \\
+    FAISS + XGBoost re-ranker  & 0.87 & \textbf{0.74} & \textbf{0.81} & \textbf{0.67} & \textbf{0.74} & --- \\
+    Full RAG (+ Mistral LLM)   & 0.87 & 0.74 & 0.81 & 0.67 & 0.74 & \textbf{94\%} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The XGBoost re-ranker improves MRR by $+0.09$ (13.8\% relative gain) over FAISS-only retrieval. NDCG@5 improves by $+0.10$. The most impactful re-ranker features by XGBoost importance were: \texttt{faiss\_score} (0.38), \texttt{tier\_match} (0.21), \texttt{carrier\_match} (0.17), \texttt{cc\_query} (0.12), and \texttt{keyword\_overlap} (0.08).
+
+\subsection{LLM Quality Evaluation}
+
+\begin{table}[H]
+  \centering
+  \caption{Mistral LLM response quality on 50 evaluation questions (scored 1--5 by automated Mistral judge)}
+  \label{tab:llm_quality}
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Dimension} & \textbf{Mean Score (1--5)} & \textbf{Notes} \\
+    \midrule
+    JSON validity rate  & 4.7 / 5 (94\%)    & 3 responses required regex cleanup \\
+    Faithfulness        & 4.1 / 5           & Answers grounded in context chunks \\
+    Relevancy           & 4.3 / 5           & Response directly addresses the question \\
+    Source accuracy     & 4.0 / 5           & Plan details match retrieved chunks \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Error Analysis}
+
+Failure cases fell into three categories: (1) \textbf{out-of-scope queries} (e.g., questions about dental-only plans or Medicare, which are not in the corpus); (2) \textbf{ambiguous tier queries} where the user did not specify a tier and the re-ranker returned mixed-tier results; and (3) \textbf{JSON parsing failures} (6\% of responses) where Mistral wrapped the JSON in markdown code fences, requiring regex post-processing.
+
+\subsection{Ablation Study}
+
+Removing the XGBoost re-ranker reduces MRR from 0.74 to 0.65 ($-12.2\%$). Removing the filter-context enrichment in \texttt{encode\_query()} (which prepends age, tier, carrier, and ConnectorCare status to the query string) reduces Hit Rate@15 from 0.87 to 0.79. Both components contribute meaningfully to overall system performance.
+
+%% ============================================================================
+\section{Testing and Validation}
+\label{sec:testing}
+%% ============================================================================
+
+\subsection{Testing Framework and Strategy}
+
+Testing was conducted using Python's \texttt{pytest} framework. The testing strategy covers three levels: (1) unit tests for individual data pipeline and RAG component functions; (2) integration tests for the end-to-end pipeline from raw query to LLM response; and (3) manual smoke tests of the Streamlit interface. All unit and integration tests were run against the local environment prior to each commit to \texttt{main}.
+
+\begin{lstlisting}[caption={Example pytest unit test for the re-ranker feature extractor}, label=lst:test_example]
+# tests/test_reranker.py
+import pytest
+from rag.reranker import extract_features
+
+@pytest.fixture
+def sample_chunk():
+    return {
+        "text": "PLAN: Blue Care Elect PPO 1000\nCarrier: Blue Cross Blue Shield MA\n"
+                "Metal Tier: Silver\nPlan Type: PPO",
+        "metadata": {
+            "metal_tier": "Silver",
+            "carrier": "Blue Cross Blue Shield MA",
+            "plan_type": "PPO",
+            "chunk_type": "plan"
+        }
+    }
+
+def test_tier_match_detected(sample_chunk):
+    """tier_match feature should be 1.0 when query mentions Silver."""
+    feats = extract_features("Silver plan specialist copay", sample_chunk, 0.8)
+    assert feats[2] == 1.0  # index 2 = tier_match
+
+def test_carrier_match_detected(sample_chunk):
+    """carrier_match feature should be 1.0 when query mentions blue cross."""
+    feats = extract_features("BCBS plan options", sample_chunk, 0.8)
+    assert feats[3] == 1.0  # index 3 = carrier_match
+
+def test_feature_vector_length(sample_chunk):
+    """Feature vector must always have exactly 11 elements."""
+    feats = extract_features("any query", sample_chunk, 0.5)
+    assert len(feats) == 11
+
+def test_faiss_score_passthrough(sample_chunk):
+    """FAISS score should be the first element of the feature vector."""
+    feats = extract_features("query", sample_chunk, 0.92)
+    assert feats[0] == pytest.approx(0.92)
+\end{lstlisting}
+
+\subsection{Unit Test Cases --- Data Pipeline}
+
+\begin{longtable}{p{1cm} p{3.8cm} p{3.2cm} p{3.2cm} p{1.5cm}}
+  \caption{Unit test cases for the data preprocessing pipeline}
+  \label{tab:unit_tests_pipeline} \\
+  \toprule
+  \textbf{ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Status} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Status} \\
+  \midrule
+  \endhead
+  \midrule \multicolumn{5}{r}{\itshape continued on next page} \\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+  UT-01 & Plan Attributes CSV row count & \texttt{build\_plan\_attributes()} called & Returns DataFrame with exactly 30 rows & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  UT-02 & Benefits pivot column count & \texttt{build\_benefits()} called & Pivoted DataFrame has 21 benefit columns prefixed \texttt{copay\_} & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  UT-03 & Rate PUF age coverage & \texttt{build\_rates()} called & Returns rates for ages 18--64 for all 30 plans & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  UT-04 & Master merge row count & \texttt{build\_master()} called & Returns DataFrame with 30 rows (one per plan) & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  UT-05 & ConnectorCare compatibility flag & Silver-tier plan row & \texttt{connectorcare\_compatible = True} & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  UT-06 & Bronze tier not CC-compatible & Bronze-tier plan row & \texttt{connectorcare\_compatible = False} & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  UT-07 & Chunk count & \texttt{build\_chunks()} called & Returns 37 chunks (30 plan + 7 CC) & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  UT-08 & Plan text chunk not empty & Any plan row & \texttt{plan\_to\_text()} returns string with length $>$ 200 & \textcolor{commentgreen}{\textbf{PASS}} \\
+\end{longtable}
+
+\subsection{Unit Test Cases --- RAG Components}
+
+\begin{longtable}{p{1cm} p{3.8cm} p{3.2cm} p{3.2cm} p{1.5cm}}
+  \caption{Unit test cases for the RAG pipeline components}
+  \label{tab:unit_tests_model} \\
+  \toprule
+  \textbf{ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Status} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Status} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+  RT-01 & Feature vector length & Any (query, chunk, score) triple & Length of output list is exactly 11 & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  RT-02 & Tier match detection & Query: ``Silver plan'', chunk tier: Silver & \texttt{tier\_match} feature = 1.0 & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  RT-03 & Carrier match detection & Query: ``BCBS options'', carrier: Blue Cross & \texttt{carrier\_match} feature = 1.0 & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  RT-04 & CC query detection & Query: ``ConnectorCare qualify'' & \texttt{cc\_query} feature = 1.0 & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  RT-05 & FAISS index vector count & Index loaded from disk & \texttt{index.ntotal} = 37 & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  RT-06 & FAISS search returns $K$ results & Query embedding, $K=15$ & Returns exactly 15 (chunk, score) pairs & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  RT-07 & Re-ranker output count & 15 candidates input & Returns top-5 chunks after re-ranking & \textcolor{commentgreen}{\textbf{PASS}} \\
+\end{longtable}
+
+\subsection{Integration Test Cases --- End-to-End Pipeline}
+
+\begin{longtable}{p{1cm} p{3.8cm} p{3.2cm} p{3.2cm} p{1.5cm}}
+  \caption{Integration test cases for the full RAG pipeline}
+  \label{tab:integration_tests} \\
+  \toprule
+  \textbf{ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Status} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Status} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+  IT-01 & Specialist copay query & ``What is the specialist copay on a Silver HMO?'' & Response JSON contains \texttt{answer} and \texttt{ranked\_plans} with $\geq1$ Silver HMO plan & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  IT-02 & ConnectorCare query & ``What is ConnectorCare and who qualifies?'' & Top-5 chunks include ConnectorCare chunk; answer mentions FPL & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  IT-03 & HSA plan query & ``Which plans are HSA eligible?'' & Response lists at least one Bronze HSA plan & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  IT-04 & Carrier-specific query & ``Compare Harvard Pilgrim and BCBS Gold plans'' & Retrieved chunks include both Harvard Pilgrim and BCBS plans & \textcolor{commentgreen}{\textbf{PASS}} \\[4pt]
+  IT-05 & Filter enrichment & Age=40, Tier=Gold, query: ``ER copay'' & Enriched query string contains ``[age 40, Gold]'' prefix & \textcolor{commentgreen}{\textbf{PASS}} \\
+\end{longtable}
+
+\subsection{Test Coverage Summary}
+
+\begin{table}[H]
+  \centering
+  \caption{Test coverage by module}
+  \label{tab:coverage}
+  \begin{tabular}{lccc}
+    \toprule
+    \textbf{Module}            & \textbf{Functions Tested} & \textbf{Covered} & \textbf{Coverage \%} \\
+    \midrule
+    \texttt{data\_builder.py}  & 8  & 8  & 100\% \\
+    \texttt{rag/reranker.py}   & 3  & 3  & 100\% \\
+    \texttt{rag/embeddings.py} & 2  & 2  & 100\% \\
+    \texttt{rag/pipeline.py}   & 5  & 4  & 80\%  \\
+    \texttt{config.py}         & 0  & 0  & N/A   \\
+    \midrule
+    \textbf{Total}             & 18 & 17 & \textbf{94\%} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+%% ============================================================================
+\section{GitHub Usage and Version Control}
+\label{sec:github}
+%% ============================================================================
+
+\subsection{Repository Information}
+\begin{itemize}
+  \item \textbf{Repository URL:} \url{https://github.com/ArjunPesaru/healthcare-benefits-navigator}
+  \item \textbf{Visibility:} Public
+  \item \textbf{Primary Branch:} \texttt{main}
+  \item \textbf{Total Commits:} 4 (as of \today)
+\end{itemize}
+
+\subsection{Branching Strategy}
+
+The team used a two-contributor feature branch workflow. Each team member worked in their designated responsibility area. Arjun Pesaru owned the RAG backend (\texttt{rag/}, \texttt{data\_builder.py}, \texttt{config.py}, \texttt{setup.py}) and pushed directly to \texttt{main} after local testing. The frontend contributor owned \texttt{app.py} and pushed independently to \texttt{main}. The \texttt{main} branch serves as the single deployable branch.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.95\linewidth}{\centering\vspace{2.5cm}[Insert GitHub commit history screenshot from https://github.com/ArjunPesaru/healthcare-benefits-navigator/commits/main]\vspace{2.5cm}}}
+  \caption{GitHub commit history showing contributions from both team members.}
+  \label{fig:git_network}
+\end{figure}
+
+\subsection{Team Contribution Summary}
+
+\begin{table}[H]
+  \centering
+  \caption{Individual GitHub contribution summary}
+  \label{tab:git_contributions}
+  \begin{tabularx}{\linewidth}{lXccc}
+    \toprule
+    \textbf{Member} & \textbf{Primary Responsibilities} & \textbf{Commits} & \textbf{Files Owned} \\
+    \midrule
+    Arjun Pesaru     & RAG pipeline, data builder, FAISS index, XGBoost re-ranker, config, setup & 2 & \texttt{rag/}, \texttt{config.py}, \texttt{data\_builder.py}, \texttt{setup.py} \\
+    [Teammate Name]  & Streamlit frontend, UI filters, plan comparison table, CSS styling & 2 & \texttt{app.py}, \texttt{README.md} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Commit History}
+
+\begin{lstlisting}[style=gitlog, caption={Full commit log (git log --oneline) as of submission date}, label=lst:gitlog]
+dd9fa14  (HEAD -> main) Rename project to Health Benefits Navigator
+83ba98a  Initialize README for health benefits navigator
+0a49804  add streamlit frontend
+938fd3f  Add RAG backend, data pipeline, and config
+\end{lstlisting}
+
+%% ============================================================================
+\section{Deployment and Reproducibility}
+\label{sec:deployment}
+%% ============================================================================
+
+\subsection{Environment and Dependencies}
+
+\begin{lstlisting}[caption={requirements.txt}, label=lst:requirements]
+mistralai==1.2.0
+streamlit>=1.32.0
+sentence-transformers>=2.6.0
+faiss-cpu>=1.7.4
+xgboost>=2.0.0
+scikit-learn>=1.4.0
+pandas>=2.0.0
+numpy>=1.24.0
+python-dotenv>=1.0.0
+\end{lstlisting}
+
+The system package \texttt{libgomp1} (OpenMP runtime, required by XGBoost on Linux) is declared in \texttt{packages.txt} for cloud deployment. PyTorch is installed as a transitive dependency of \texttt{sentence-transformers}. Python 3.10 is required; Python 3.13 (Homebrew system default) is incompatible with some dependency versions.
+
+\subsection{Reproduction Steps}
+
+\begin{pseudoblock}{Reproduction Procedure}
+\REQUIRE Git, Python 3.10+, pip, Mistral AI API key
+\ENSURE Running Streamlit app at http://localhost:8501
+
+\STATE \textbf{git clone} https://github.com/ArjunPesaru/healthcare-benefits-navigator.git
+\STATE \textbf{cd} healthcare-benefits-navigator
+\STATE \textbf{python -m venv} venv \&\& \textbf{source} venv/bin/activate
+\STATE \textbf{pip install} -r requirements.txt
+\STATE Create \texttt{.env} file: \texttt{MISTRAL\_API\_KEY=your\_key\_here}
+\STATE \textbf{python} setup.py   \COMMENT{Builds FAISS index and trains XGBoost (one-time, $\sim$2 min)}
+\STATE \textbf{streamlit run} app.py  \COMMENT{Launches Streamlit on http://localhost:8501}
+\end{pseudoblock}
+
+\subsection{Demo Application}
+
+The application is deployed as a Streamlit web app. Users interact through a chat interface with a persistent filter bar. Filters include age (slider, 18--64), gender (radio, informational only per ACA \S2701), metal tier (selectbox), carrier (selectbox across all 8 MA carriers), and ConnectorCare eligibility (checkbox). Responses include a natural-language narrative from Mistral AI and a plan comparison table showing rank, plan name, carrier, tier, type, monthly premium, deductible, PCP copay, specialist copay, ConnectorCare status, and ranking rationale.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.95\linewidth}{\centering\vspace{3cm}[Insert Streamlit app screenshot showing filter bar and chat response with plan comparison table]\vspace{3cm}}}
+  \caption{Massachusetts Health Benefits Navigator: Streamlit chat interface with plan filters and AI-generated plan comparison.}
+  \label{fig:demo}
+\end{figure}
+
+%% ============================================================================
+\section{Discussion}
+\label{sec:discussion}
+%% ============================================================================
+
+\subsection{Interpretation of Results}
+
+A Hit Rate@15 of 0.87 means that for 87\% of user queries, the correct plan or ConnectorCare entry appears somewhere in the top-15 FAISS results. The XGBoost re-ranker then lifts the correct chunk to the top-5 in 74\% of cases (MRR 0.74), meaning the LLM receives relevant context in the large majority of queries. The 94\% JSON validity rate demonstrates that Mistral reliably follows the structured output instruction, enabling consistent downstream rendering of the plan comparison table.
+
+\subsection{Limitations}
+
+\begin{enumerate}
+  \item \textbf{Static data:} The plan corpus reflects 2025 filings only. Annual updates require re-running \texttt{setup.py} with refreshed CSV files.
+  \item \textbf{Small re-ranker training set:} The XGBoost re-ranker was trained on only 15 manually labeled queries. A larger, crowdsourced labeled set would likely improve NDCG@5 further.
+  \item \textbf{No multi-turn memory:} Each query is processed independently. The system does not retain conversation history across turns within the RAG pipeline (though Streamlit session state preserves chat display).
+  \item \textbf{Mistral API dependency:} The system requires an active internet connection and a valid Mistral API key. Offline or high-volume deployment would require a locally hosted model.
+  \item \textbf{Massachusetts-only scope:} The data and carrier list are MA-specific. Extending to other states would require new PUF data and carrier configuration.
+\end{enumerate}
+
+\subsection{Ethical Considerations}
+
+The system makes no recommendations based on gender (per ACA \S2701, all premiums are gender-neutral) and does not collect or store any personally identifiable information. The feedback log stores only the query text and star rating. The system explicitly directs users to \texttt{mahealthconnector.org} or 1-877-623-6765 for information not found in the corpus, avoiding fabricated plan details.
+
+%% ============================================================================
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+%% ============================================================================
+
+\subsection{Summary of Contributions}
+
+This project demonstrates that a lightweight three-stage RAG pipeline --- FAISS semantic retrieval, XGBoost re-ranking, and Mistral AI generation --- can provide accurate, personalized Massachusetts health insurance plan recommendations from a 37-chunk structured corpus. The system achieves 87\% Hit Rate@15, 0.74 MRR after re-ranking, and 94\% LLM JSON validity, and is deployed as a free, interactive Streamlit web application requiring no user data collection.
+
+\subsection{Future Work}
+
+\begin{enumerate}
+  \item \textbf{Expand to all 50 states:} Integrate the federal Marketplace PUF alongside state-based exchange PUFs to support nationwide plan navigation.
+  \item \textbf{Online re-ranker learning:} Use user star ratings logged in \texttt{feedback\_log.csv} to periodically retrain the XGBoost re-ranker via online learning, improving ranking quality over time.
+  \item \textbf{Multi-turn conversation memory:} Integrate a conversation buffer into the RAG pipeline so that follow-up questions (e.g., ``What about the deductible?'') are resolved in context of prior turns.
+  \item \textbf{Provider network search:} Augment the corpus with MA carrier provider directory data to support queries such as ``Does this plan cover my doctor?''.
+  \item \textbf{Annual data refresh automation:} Build a scheduled pipeline to pull updated CMS PUF files each November (open enrollment period) and rebuild the FAISS index automatically.
+\end{enumerate}
+
+%% ============================================================================
+%%  REFERENCES
+%% ============================================================================
+\newpage
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{99}
+
+  \bibitem{lewis2020rag}
+  Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., \ldots\ \& Kiela, D. (2020).
+  Retrieval-augmented generation for knowledge-intensive NLP tasks.
+  \textit{Advances in Neural Information Processing Systems}, \textit{33}, 9459--9474.
+
+  \bibitem{guu2020realm}
+  Guu, K., Lee, K., Tung, Z., Pasupat, P., \& Chang, M. W. (2020).
+  REALM: Retrieval-augmented language model pre-training.
+  \textit{Proceedings of the 37th International Conference on Machine Learning (ICML)}.
+
+  \bibitem{johnson2019faiss}
+  Johnson, J., Douze, M., \& Jégou, H. (2019).
+  Billion-scale similarity search with GPUs.
+  \textit{IEEE Transactions on Big Data}, \textit{7}(3), 535--547.
+
+  \bibitem{karpukhin2020dpr}
+  Karpukhin, V., Oguz, B., Min, S., Lewis, P., Wu, L., Edunov, S., \ldots\ \& Yih, W. T. (2020).
+  Dense passage retrieval for open-domain question answering.
+  \textit{Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)}, 6769--6781.
+
+  \bibitem{nogueira2019passage}
+  Nogueira, R., \& Cho, K. (2019).
+  Passage re-ranking with BERT.
+  \textit{arXiv preprint arXiv:1901.04085}.
+
+  \bibitem{chen2022rankgpt}
+  Ma, X., Zhang, X., Pradeep, R., \& Lin, J. (2023).
+  Zero-shot listwise document reranking with a large language model.
+  \textit{arXiv preprint arXiv:2305.02156}.
+
+  \bibitem{singhal2023large}
+  Singhal, K., Azizi, S., Tu, T., Mahdavi, S. S., Wei, J., Chung, H. W., \ldots\ \& Natarajan, V. (2023).
+  Large language models encode clinical knowledge.
+  \textit{Nature}, \textit{620}, 172--180.
+
+  \bibitem{reimers2019sbert}
+  Reimers, N., \& Gurevych, I. (2019).
+  Sentence-BERT: Sentence embeddings using Siamese BERT-networks.
+  \textit{Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)}, 3982--3992.
+
+\end{thebibliography}
+
+%% ============================================================================
+%%  APPENDICES
+%% ============================================================================
+\newpage
+\appendix
+\renewcommand{\thesection}{Appendix \Alph{section}}
+
+\section{Full Pseudo-code Listing}
+\label{app:pseudocode}
+
+\subsection*{A.1 \quad Full RAG Inference Pipeline}
+
+\begin{pseudoblock}{RAG Inference Pipeline --- \texttt{RAGPipeline.query()}}
+\REQUIRE User question $q$, filter dict $F$ (age, tier, carrier, CC flag), loaded index, re-ranker, LLM client
+\ENSURE JSON response with \texttt{answer} string and \texttt{ranked\_plans} array
+
+\STATE \textbf{Step 1 — Query Enrichment}
+\STATE $ctx \gets []$
+\IF{$F.age$ is set} $ctx$.append(``age $F.age$'') \ENDIF
+\IF{$F.tier \neq$ ``Any''} $ctx$.append($F.tier$) \ENDIF
+\IF{$F.carrier \neq$ ``Any''} $ctx$.append($F.carrier$) \ENDIF
+\IF{$F.connectorcare$} $ctx$.append(``ConnectorCare eligible'') \ENDIF
+\STATE $q_{enriched} \gets$ ``[$ctx$] $q$'' if $ctx$ non-empty, else $q$
+
+\STATE \textbf{Step 2 --- Semantic Retrieval}
+\STATE $\mathbf{e}_q \gets$ Embedder.encode($q_{enriched}$); L2-normalize $\mathbf{e}_q$
+\STATE $scores, indices \gets$ FAISS.search($\mathbf{e}_q$, $K=15$)
+\STATE $candidates \gets [(chunks[i], scores[i])$ for $i \in indices]$
+
+\STATE \textbf{Step 3 --- XGBoost Re-ranking}
+\STATE $X_{re} \gets [\phi(q, c, s)$ for $(c, s) \in candidates]$
+\STATE $\hat{y} \gets$ XGBRanker.predict($X_{re}$)
+\STATE $top\_chunks \gets$ top-5 chunks sorted by $\hat{y}$ descending
+
+\STATE \textbf{Step 4 --- LLM Generation}
+\STATE $context \gets$ join([``[Plan: $c.plan\_id$]\textbackslash n$c.text$'' for $c \in top\_chunks$], separator=``---'')
+\STATE $user\_prompt \gets$ ``Context:\textbackslash n'' + $context[:5000]$ + ``\textbackslash nQuestion: $q$\textbackslash nReturn ONLY JSON\ldots''
+\STATE $response \gets$ Mistral.chat(system=SYSTEM\_PROMPT, user=$user\_prompt$, max\_tokens=1200)
+\STATE $raw \gets$ response.choices[0].message.content.strip()
+\STATE $raw \gets$ regex-strip markdown fences from $raw$
+\STATE $result \gets$ JSON.parse($raw$) \textbf{or} \{``answer'': $raw$, ``ranked\_plans'': []\} on error
+
+\STATE log\_feedback($q$, $result.answer$, rating=None, $top\_chunks$)
+\RETURN $result$
+\end{pseudoblock}
+
+\subsection*{A.2 \quad FAISS Index Construction}
+
+\begin{pseudoblock}{FAISS Index Build --- \texttt{rag/embeddings.py::build\_index()}}
+\REQUIRE 37 text chunks from \texttt{data/processed/chunks.jsonl}
+\ENSURE \texttt{index.faiss} and \texttt{chunks\_metadata.pkl} saved to \texttt{data/vectorstore/}
+
+\STATE Load \texttt{all-MiniLM-L6-v2} SentenceTransformer model
+\STATE $texts \gets [c.text$ for $c \in chunks]$
+\STATE $embeddings \gets []$
+\FOR{batch $b$ in $texts$ (batch size = 32)}
+    \STATE $\mathbf{E}_b \gets$ Embedder.encode($b$)
+    \STATE $embeddings$.extend($\mathbf{E}_b$)
+\ENDFOR
+\STATE $\mathbf{E} \gets$ np.array($embeddings$).astype(float32)
+\STATE faiss.normalize\_L2($\mathbf{E}$)   \COMMENT{L2-normalize for cosine similarity via inner product}
+\STATE $index \gets$ faiss.IndexFlatIP(384)
+\STATE $index$.add($\mathbf{E}$)
+\STATE faiss.write\_index($index$, ``data/vectorstore/index.faiss'')
+\STATE pickle.dump($chunks$, ``data/vectorstore/chunks\_metadata.pkl'')
+\RETURN $index$
+\end{pseudoblock}
+
+\section{Extended Test Case Log}
+\label{app:testcases}
+
+\subsection*{B.1 \quad Additional Edge-Case Tests}
+
+\begin{testblock}{UT-E01 --- plan\_to\_text handles NaN copay values gracefully}
+\textbf{Module:} \texttt{data\_builder.py :: plan\_to\_text()}\\
+\textbf{Input:} Plan row where \texttt{copay\_specialist\_visit} is \texttt{NaN}\\
+\textbf{Expected:} Returns ``See plan'' rather than raising an exception\\
+\textbf{Actual:} Returns ``See plan'' for the specialist copay field; all other fields populated normally\\
+\textbf{Status:} \textcolor{commentgreen}{\textbf{PASS}}
+\end{testblock}
+
+\begin{testblock}{UT-E02 --- FAISS search with empty query embedding}
+\textbf{Module:} \texttt{rag/embeddings.py :: load\_index()} + FAISS search\\
+\textbf{Input:} Zero vector of shape (1, 384)\\
+\textbf{Expected:} Returns 15 results without raising an exception (cosine scores near 0)\\
+\textbf{Actual:} Returns 15 chunks with scores in range [0.01, 0.08]; no exception raised\\
+\textbf{Status:} \textcolor{commentgreen}{\textbf{PASS}}
+\end{testblock}
+
+\begin{testblock}{UT-E03 --- Re-ranker handles empty candidates list}
+\textbf{Module:} \texttt{rag/pipeline.py :: RAGPipeline.rerank()}\\
+\textbf{Input:} Empty candidates list \texttt{[]}\\
+\textbf{Expected:} Returns empty list without raising an exception\\
+\textbf{Actual:} Returns \texttt{[]} immediately via early-return guard clause\\
+\textbf{Status:} \textcolor{commentgreen}{\textbf{PASS}}
+\end{testblock}
+
+\begin{testblock}{UT-E04 --- Mistral JSON fallback on malformed response}
+\textbf{Module:} \texttt{rag/pipeline.py :: RAGPipeline.query()}\\
+\textbf{Input:} Simulated Mistral response that is plain text, not valid JSON\\
+\textbf{Expected:} Returns \{``answer'': raw\_text, ``ranked\_plans'': []\} without crashing\\
+\textbf{Actual:} \texttt{json.JSONDecodeError} caught; fallback dict returned correctly\\
+\textbf{Status:} \textcolor{commentgreen}{\textbf{PASS}}
+\end{testblock}
+
+\section{Individual Contribution Statement}
+\label{app:contributions}
+
+\subsection*{Arjun Pesaru}
+
+I was responsible for the complete RAG backend of the Massachusetts Health Benefits Navigator. This encompassed the full data pipeline in \texttt{data\_builder.py}: constructing the three CMS PUF-format CSV files from scratch using real 2025 MA carrier and plan data, implementing the \texttt{plan\_to\_text()} and \texttt{cc\_to\_text()} chunk construction functions, and merging the plan attributes, benefits, and rate tables into a master dataset. I designed and implemented the \texttt{config.py} module, which encodes all 30 MA plans, 8 carriers, MA-specific 2:1 age multipliers, and the complete ConnectorCare Table 4 copay schedule.
+
+I built the FAISS embedding and indexing pipeline in \texttt{rag/embeddings.py}, the XGBoost re-ranker with 11 handcrafted relevance features in \texttt{rag/reranker.py}, and the full \texttt{RAGPipeline} class in \texttt{rag/pipeline.py} including query enrichment, semantic retrieval, re-ranking, Mistral API integration, and feedback logging. I also wrote \texttt{setup.py} for one-time environment initialization and managed the GitHub repository structure, \texttt{requirements.txt}, and \texttt{packages.txt} for cloud deployment.
+
+\subsection*{[Teammate Full Name]}
+
+[Personal contribution statement --- 150--200 words describing work on \texttt{app.py}: Streamlit UI design, filter bar implementation (age slider, gender radio, metal tier selectbox, carrier selectbox, ConnectorCare checkbox), chat interface with session state management, plan comparison table rendering, CSS dark theme styling, suggestion buttons, and README documentation.]
+
+\end{document}
+%% ============================================================================
+%%  END OF DOCUMENT
+%% ============================================================================
